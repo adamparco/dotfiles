@@ -1,0 +1,9 @@
+#!/bin/sh
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+ln -sfn $DIR/.vim ~/.vim
+ln -sfn $DIR/.vimrc ~/.vimrc
+ln -sfn $DIR/.bashrc ~/.bashrc
+ln -sfn $DIR/.tmuxconf ~/.tmuxconf
+ln -sfn $DIR/config ~/.ssh/config
