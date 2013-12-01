@@ -14,8 +14,8 @@ ln_f()
     ln -sfn $DIR/$src $dest
 }
 
-ln_f .vim ~/.vim
-ln_f .vimrc ~/.vimrc
-ln_f .bashrc ~/.bashrc
-ln_f .tmuxconf ~/.tmuxconf
+ln_f vim ~/.vim
+ln_f vimrc ~/.vimrc
+ln_f bashrc ~/.bashrc
+ln_f tmuxconf ~/.tmuxconf
 ln_f config ~/.ssh/config
