@@ -17,5 +17,5 @@ ln_f()
 ln_f vim ~/.vim
 ln_f vimrc ~/.vimrc
 ln_f bashrc ~/.bashrc
-ln_f tmuxconf ~/.tmuxconf
+ln_f tmux.conf ~/.tmux.conf
 ln_f config ~/.ssh/config
