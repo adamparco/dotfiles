@@ -10,3 +10,6 @@ Host lview3
     HostName wtl-lview-3
 	ForwardX11Trusted yes
 
+Host test
+    HostName test
+    ForwardX11Trusted yes
