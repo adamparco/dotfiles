@@ -2,8 +2,9 @@ Host sandvine
 	HostName lab.sandvine.com
 	Port 123
 	User aparco
-    LocalForward 32000 aparco-pc1:3389
-    LocalForward 32003 wtl-lview-3:22
+    LocalForward 32000 aparco-pc1.sandvine.com:3389
+    LocalForward 32001 sw-codereview1.sandvine.com:80
+    LocalForward 6000 wtl-lview-3.sandvine.com:6000
 	ForwardX11Trusted yes
 
 Host lview3
