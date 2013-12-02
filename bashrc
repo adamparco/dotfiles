@@ -93,7 +93,7 @@ setPS()
 
 PROMPT_COMMAND='history -a; ccase_view; setPS'
 
-set -o emacs
+set -o vi
 shopt -s checkwinsize
 
 set completion-ignore-case on
