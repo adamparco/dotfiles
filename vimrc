@@ -24,7 +24,16 @@ autocmd BufRead,BufNewFile *.txt,*.email set spell | syn off
 "autocmd FileType cpp setl sw=4 expandtab
 " Use the FreeBSD style plugin with FreeBSD code.
 "autocmd BufRead,BufNewFile /vobs/fw-bsd/*.[ch],~/src/freebsd/*.[ch] call FreeBSD_Style() | set filetype=c
+"autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4
 
+"Paste Mode
+nnoremap <F2> :set invpaste paste?<CR>
+set pastetoggle=<F2>
+set showmode
+
+"retain shift selection after shifting
+vnoremap > >gv
+vnoremap < <gv
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
@@ -149,6 +158,7 @@ set tw=500
 set ai "Auto indent
 set si "Smart indent
 set wrap "Wrap lines
+set cindent
 
 
 """"""""""""""""""""""""""""""
