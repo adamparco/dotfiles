@@ -1,13 +1,14 @@
 #!/bin/sh
 
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+backup_dir=$DIR/backup/$(date +"%Y%m%d%H%M%S")
+
 ln_f()
 {
     src=$1
     dest=$2
-    DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
     if [ -e $dest ] ; then
-        backup_dir=$DIR/backup/$(date +"%Y%m%d%H%M%S")
         mkdir -p $backup_dir
         mv $dest $backup_dir/`basename "$dest"`
     fi
