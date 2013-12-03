@@ -7,9 +7,18 @@ set number
 :ca X x
 :ca W w
 
-if has("gui_running")
-set lines=55 columns=150
-set guifont=Courier\ 10\ Pitch\ 10
+set background=dark
+colorscheme adam
+set t_Co=256
+
+if has('gui_running')
+  set guioptions-=T  " no toolbar
+  set lines=55 columns=150
+  set guifont=Courier\ 10\ Pitch\ 10
+  set guioptions+=e
+  set guitablabel=%M\ %t
+else
+  set hlsearch
 endif
 
 "return to last line
@@ -34,6 +43,9 @@ set showmode
 "retain shift selection after shifting
 vnoremap > >gv
 vnoremap < <gv
+
+"line break at cursor location
+nmap <CR> i<Enter><Esc>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
@@ -110,17 +122,6 @@ set tm=500
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Enable syntax highlighting
 syntax enable
-
-colorscheme adam
-set background=dark
-
-" Set extra options when running in GUI mode
-if has("gui_running")
-    set guioptions-=T
-    set guioptions+=e
-    set t_Co=256
-    set guitablabel=%M\ %t
-endif
 
 " Set utf8 as standard encoding and en_US as the standard language
 set encoding=utf8
