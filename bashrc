@@ -65,7 +65,7 @@ CGREEN="\[\e[38;5;70m\]"
 CBLUE="\[\e[38;5;31m\]"
 CRED="\[\e[38;5;52m\]"
 
-export PROMPT_DIRTRIM=4
+export PROMPT_DIRTRIM=5
 _DVIEW=""
 ccase_view()
 {
@@ -87,7 +87,7 @@ ccase_view()
 
 setPS()
 {
-    export PS1="$CRST$CGREY\u$CRST@$CGREEN\h$CGREY$_DVIEW$CBLUE[\w]$CRST\$ "
+    export PS1="$CRST$CGREY\u$CRST@$CGREEN\h$CGREY$_DVIEW$CBLUE[\w]$CRST\n\$ "
     export PS2="$CRST$CGREY>$CRST "
 }
 
@@ -193,18 +193,3 @@ svtrace_set_channel()
     echo "After"
     pdbClient -c "lst $svtrace_pdb_path" | grep -w $ch
 }
-
-#_______________________________________________________________________________________________________
-#TITLEBAR='\[\e]0;\u@\h \w\a\]'
-#export PS1="${TITLEBAR}\[\e[1;34m\]\u@\[\e[0;32m\]\h\[\e[0;36m\][\w]\[\e[0m\]\$ "
-#red=$(tput setaf 1)
-#green=$(tput setaf 2)
-#yellow=$(tput setaf 3)
-#blue=$(tput setaf 4)
-#purple=$(tput setaf 5)
-#lightblue=$(tput setaf 6)
-#white=$(tput setaf 7)
-#bold=$(tput bold)
-#reset=$(tput sgr0)
-#PS1='\[$blue$bold\]\u\[$reset\]@\[$green\]\h\[$lightblue\][\w]\[$reset\]\$ '
-#PS2='\[$blue$bold\]>\[$reset\] '

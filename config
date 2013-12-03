@@ -7,7 +7,7 @@ Host sandvine
     LocalForward localhost:6000 wtl-lview-3.sandvine.com:6000
 	ForwardX11Trusted yes
 
-Host lview3
+Host lview
     HostName wtl-lview-3
 	ForwardX11Trusted yes
 
