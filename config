@@ -4,14 +4,12 @@ Host sandvine
 	User aparco
     LocalForward localhost:32000 aparco-pc1.sandvine.com:3389
     LocalForward localhost:32100 sw-codereview1.sandvine.com:80
-    LocalForward localhost:32101 wtl-app1.sandvine.com:80
-    LocalForward localhost:32102 ml.sandvine.com:80
-    LocalForward localhost:32000 wtllab-test-9.phaedrus.sandvine.com:22
     LocalForward localhost:32001 wtl-lview-1.sandvine.com:22
     LocalForward localhost:32003 wtl-lview-3.sandvine.com:22
     LocalForward localhost:32004 wtl-lview-4.sandvine.com:22
     LocalForward localhost:32005 wtl-lview-5.sandvine.com:22
     LocalForward localhost:32006 wtl-lview-6.sandvine.com:22
+    LocalForward localhost:32009 wtllab-test-9.phaedrus.sandvine.com:22
 	ForwardX11Trusted yes
     ForwardAgent yes
 
@@ -23,7 +21,7 @@ Host hlview
 
 Host htest
     HostName localhost
-    Port 32000
+    Port 32009
     ForwardX11Trusted yes
     ForwardAgent yes
 
