@@ -53,6 +53,26 @@ hi WarningMsg	guifg=salmon
 "hi Tooltip
 hi String guifg=darksalmon
 
+
+
+"NR-16   NR-8    COLOR NAME 
+"0       0       Black
+"1       4       DarkBlue
+"2       2       DarkGreen
+"3       6       DarkCyan
+"4       1       DarkRed
+"5       5       DarkMagenta
+"6       3       Brown, DarkYellow
+"7       7       LightGray, LightGrey, Gray, Grey
+"8       0*      DarkGray, DarkGrey
+"9       4*      Blue, LightBlue
+"10      2*      Green, LightGreen
+"11      6*      Cyan, LightCyan
+"12      1*      Red, LightRed
+"13      5*      Magenta, LightMagenta
+"14      3*      Yellow, LightYellow
+"15      7*      White
+
 " syntax highlighting groups
 hi Comment	 guifg=SkyBlue
 hi Constant	 guifg=#ffa0a0
@@ -67,6 +87,7 @@ hi Ignore 	 guifg=grey40
 hi Todo		 guifg=orangered guibg=yellow2
 
 " color terminal definitions
+hi Normal	ctermfg=grey
 hi SpecialKey    ctermfg=darkgreen
 hi NonText       cterm=bold ctermfg=darkgrey
 hi Directory     ctermfg=darkcyan
@@ -75,7 +96,7 @@ hi IncSearch     cterm=NONE ctermfg=yellow ctermbg=green
 hi Search        cterm=NONE ctermfg=grey ctermbg=blue
 hi MoreMsg       ctermfg=darkgreen
 hi ModeMsg       cterm=NONE ctermfg=brown
-hi LineNr        ctermfg=darkgrey
+hi LineNr        ctermfg=darkgray
 hi Question      ctermfg=green
 hi StatusLine    cterm=bold
 hi StatusLineNC  cterm=NONE
@@ -91,7 +112,7 @@ hi DiffAdd       ctermbg=4
 hi DiffChange    ctermbg=5
 hi DiffDelete    cterm=bold ctermfg=4 ctermbg=6
 hi DiffText      cterm=bold ctermbg=1
-hi Comment       ctermfg=darkgrey
+hi Comment       ctermfg=LightBlue
 hi Constant      ctermfg=brown
 hi Special       ctermfg=5
 hi Identifier    ctermfg=6
