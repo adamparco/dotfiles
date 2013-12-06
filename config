@@ -17,12 +17,14 @@ Host hlview
     HostName localhost
     Port 32003
 	ForwardX11Trusted yes
+    User aparco
     ForwardAgent yes
 
 Host htest
     HostName localhost
     Port 32009
     ForwardX11Trusted yes
+    User aparco
     ForwardAgent yes
 
 Host lview
