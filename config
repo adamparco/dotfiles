@@ -1,3 +1,8 @@
+Host home
+    HostName 99.236.41.107
+    Port 22022
+    User adamparco
+
 Host sandvine
 	HostName lab.sandvine.com
 	Port 123
