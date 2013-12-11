@@ -1,8 +1,4 @@
 " Vim color file
-" Maintainer:   Hans Fugal <hans@fugal.net>
-" Last Change:  $Date: 2003/06/02 19:28:15 $
-" URL:		http://hans.fugal.net/vim/colors/desert.vim 
-
 " cool help screens
 " :he group-name
 " :he highlight-groups
@@ -22,7 +18,8 @@ let g:colors_name="adam"
 hi Normal	guifg=grey80 guibg=grey8
 
 " highlight groups
-hi Cursor	guibg=khaki guifg=slategrey
+hi Cursor	guibg=goldenrod guifg=black
+hi CursorLine   gui=NONE guibg=grey15
 "hi CursorIM	
 "hi Directory	
 "hi DiffAdd				
@@ -33,13 +30,13 @@ hi Cursor	guibg=khaki guifg=slategrey
 hi VertSplit	guibg=#c2bfa5 guifg=grey50 gui=none
 hi Folded	guibg=grey30 guifg=gold 
 hi FoldColumn	guibg=grey30 guifg=tan
-hi IncSearch	guifg=slategrey guibg=khaki
 hi LineNr   guifg=#404040
 hi ModeMsg	guifg=goldenrod
 hi MoreMsg	guifg=SeaGreen
 hi NonText	guifg=#202020 guibg=grey8
 hi Question	guifg=springgreen
-hi Search	guibg=peru guifg=wheat
+hi Search	    guifg=white guibg=dodgerblue
+hi IncSearch	guifg=mediumpurple guibg=darkblue
 hi SpecialKey	guifg=yellowgreen
 hi StatusLine	guibg=#c2bfa5 guifg=black gui=none
 hi StatusLineNC	guibg=#c2bfa5 guifg=grey50 gui=none
@@ -53,6 +50,22 @@ hi WarningMsg	guifg=salmon
 "hi Tooltip
 hi String guifg=darksalmon
 
+" syntax highlighting groups
+hi Comment	 guifg=SkyBlue
+hi Constant	 guifg=#ffa0a0
+hi Identifier	 guifg=palegreen
+hi Statement	 guifg=khaki
+hi PreProc	 guifg=indianred
+hi Type		 guifg=darkkhaki
+hi Special	 guifg=navajowhite
+"hi Underlined	
+hi Ignore 	 guifg=grey40
+"hi Error			
+hi Todo		 guifg=orangered guibg=yellow2
+
+
+"hi CursorLine   cterm=NONE ctermbg=darkgrey guibg=darkgrey
+"hi CursorColumn cterm=NONE ctermbg=darkgrey guibg=darkgrey
 
 
 "NR-16   NR-8    COLOR NAME 
@@ -72,28 +85,14 @@ hi String guifg=darksalmon
 "13      5*      Magenta, LightMagenta
 "14      3*      Yellow, LightYellow
 "15      7*      White
-
-" syntax highlighting groups
-hi Comment	 guifg=SkyBlue
-hi Constant	 guifg=#ffa0a0
-hi Identifier	 guifg=palegreen
-hi Statement	 guifg=khaki
-hi PreProc	 guifg=indianred
-hi Type		 guifg=darkkhaki
-hi Special	 guifg=navajowhite
-"hi Underlined	
-hi Ignore 	 guifg=grey40
-"hi Error			
-hi Todo		 guifg=orangered guibg=yellow2
-
 " color terminal definitions
 hi Normal	ctermfg=grey
 hi SpecialKey    ctermfg=darkgreen
 hi NonText       cterm=bold ctermfg=darkgrey
 hi Directory     ctermfg=darkcyan
 hi ErrorMsg      cterm=bold ctermfg=7 ctermbg=1
-hi IncSearch     cterm=NONE ctermfg=yellow ctermbg=green
-hi Search        cterm=NONE ctermfg=grey ctermbg=blue
+hi IncSearch     cterm=NONE ctermfg=DarkBlue ctermbg=LightBlue
+hi Search        cterm=NONE ctermfg=white ctermbg=blue
 hi MoreMsg       ctermfg=darkgreen
 hi ModeMsg       cterm=NONE ctermfg=brown
 hi LineNr        ctermfg=darkgray
@@ -102,7 +101,7 @@ hi StatusLine    cterm=bold
 hi StatusLineNC  cterm=NONE
 hi VertSplit     cterm=reverse
 hi Title         ctermfg=5
-hi Visual        cterm=reverse
+hi Visual        cterm=NONE ctermfg=black ctermbg=darkyellow
 hi VisualNOS     cterm=bold,underline
 hi WarningMsg    ctermfg=1
 hi WildMenu      ctermfg=0 ctermbg=3
@@ -113,16 +112,13 @@ hi DiffChange    ctermbg=5
 hi DiffDelete    cterm=bold ctermfg=4 ctermbg=6
 hi DiffText      cterm=bold ctermbg=1
 hi Comment       ctermfg=LightBlue
-hi Constant      ctermfg=brown
-hi Special       ctermfg=5
-hi Identifier    ctermfg=6
-hi Statement     ctermfg=3
+hi Constant      ctermfg=red
+hi Special       ctermfg=lightyellow
+hi Identifier    ctermfg=darkgreen
+hi Statement     ctermfg=yellow
 hi PreProc       ctermfg=5
-hi Type          ctermfg=2
+hi Type          ctermfg=DarkBlue
 hi Underlined    cterm=underline ctermfg=5
 hi Ignore        ctermfg=darkgrey
 hi Error         cterm=bold ctermfg=7 ctermbg=1
-hi String        ctermfg=darkgreen
-
-
-"vim: sw=4
+hi String        ctermfg=darkyellow

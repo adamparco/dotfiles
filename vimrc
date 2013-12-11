@@ -1,6 +1,5 @@
 source $VIMRUNTIME/mswin.vim
 behave mswin
-set cursorline
 set number
 
 :ca Q q
@@ -13,7 +12,7 @@ set t_Co=256
 
 if has('gui_running')
   set guioptions-=T  " no toolbar
-  set lines=55 columns=150
+  set lines=60 columns=120
   set guifont=Courier\ 10\ Pitch\ 10
   set guioptions+=e
   set guitablabel=%M\ %t
@@ -46,6 +45,10 @@ vnoremap < <gv
 
 "line break at cursor location
 nmap <CR> i<Enter><Esc>
+
+
+"Cursor stuff
+set cursorline
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General

@@ -126,6 +126,7 @@ alias build="build -6"
 alias make="CPU=SVOS9_64 make -j 32"
 alias cd.="cd .."
 alias cd..="cd .."
+alias hs="TPC_IN_SAME_WINDOW=1 h"
 
 export DIFF_TOOL=kdiff3
 export CPU=SVOS9_64
