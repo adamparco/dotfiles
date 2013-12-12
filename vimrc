@@ -12,10 +12,11 @@ set t_Co=256
 
 if has('gui_running')
   set guioptions-=T  " no toolbar
-  set lines=60 columns=120
+  set lines=65 columns=120
   set guifont=Courier\ 10\ Pitch\ 10
   set guioptions+=e
   set guitablabel=%M\ %t
+  "winpos 50 50
 else
   set hlsearch
 endif
@@ -68,8 +69,8 @@ set autoread
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Set 7 lines to the cursor - when moving vertically using j/k
-"set so=7
+" Set n lines to the cursor - when moving vertically using j/k
+set so=5
 
 " Turn on the WiLd menu
 set wildmenu

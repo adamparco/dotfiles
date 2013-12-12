@@ -41,7 +41,8 @@ hi SpecialKey	guifg=yellowgreen
 hi StatusLine	guibg=#c2bfa5 guifg=black gui=none
 hi StatusLineNC	guibg=#c2bfa5 guifg=grey50 gui=none
 hi Title	guifg=indianred
-hi Visual	gui=none guifg=grey16 guibg=darkgoldenrod
+"hi Visual	gui=none guifg=grey16 guibg=darkgoldenrod
+hi Visual gui=none guibg=grey20
 "hi VisualNOS	
 hi WarningMsg	guifg=salmon
 "hi WildMenu	
@@ -117,7 +118,7 @@ hi Special       ctermfg=lightyellow
 hi Identifier    ctermfg=darkgreen
 hi Statement     ctermfg=yellow
 hi PreProc       ctermfg=5
-hi Type          ctermfg=DarkBlue
+hi Type          ctermfg=lightyellow
 hi Underlined    cterm=underline ctermfg=5
 hi Ignore        ctermfg=darkgrey
 hi Error         cterm=bold ctermfg=7 ctermbg=1
