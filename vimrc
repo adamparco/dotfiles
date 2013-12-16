@@ -1,5 +1,3 @@
-source $VIMRUNTIME/mswin.vim
-behave mswin
 set number
 
 :ca Q q
@@ -17,6 +15,8 @@ if has('gui_running')
   set guioptions+=e
   set guitablabel=%M\ %t
   "winpos 50 50
+  source $VIMRUNTIME/mswin.vim
+  behave mswin
 else
   set hlsearch
 endif

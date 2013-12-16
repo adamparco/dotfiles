@@ -43,8 +43,10 @@ if [ `uname` = "SVOS" ] ; then
     alias ls="ls -G"
 elif [ `uname` = "FreeBSD" ] ; then
     alias ls="ls -G"
+    export LSCOLORS="gxfxcxdxbxegedabagacad"
 elif [ `uname` = "Linux" ] ; then
     alias ls="ls --color"
+    export LS_COLORS="no=00:fi=00:di=00;36:ln=00;35:pi=40;33:so=00;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:ex=00;31:*.c md=00;32:*.exe=00;32:*.com=00;32:*.btm=00;32:*.bat=00;32:*.sh=00;32:*.csh=00;32:*.tar=00;31:*.tgz=00;31:*.arj=00;31:*.taz=00;31:*.lz h=00;31:*.zip=00;31:*.z=00;31:*.Z=00;31:*.gz=00;31:*.bz2=00;31:*.bz=00;31:*.tz=00;31:*.rpm=00;31:*.cpio=00;31:*.jpg=00;35:*.gif=00;3 5:*.bmp=00;35:*.xbm=00;35:*.xpm=00;35:*.png=00;35:*.tif=00;35:"
 elif [ `uname` = "CYGWIN_NT-6.1-WOW64" ] ; then
     export DISPLAY=localhost:0.0
 elif [ `uname` = "Darwin" ] ; then
@@ -93,6 +95,10 @@ setPS()
 
 PROMPT_COMMAND='history -a; ccase_view; setPS'
 
+# Turn off Ctrl-S
+stty ixany
+stty ixoff -ixon
+
 set -o vi
 shopt -s checkwinsize
 
@@ -118,6 +124,7 @@ HISTIGNORE='ls:history:exit'
 alias ssh="ssh -Y"
 alias l="ls"
 alias vi="vim"
+alias v="vim"
 alias g="gvim"
 alias AT="tmux attach"
 alias DT="tmux detach"
@@ -127,9 +134,16 @@ alias make="CPU=SVOS9_64 make -j 32"
 alias cd.="cd .."
 alias cd..="cd .."
 alias hs="TPC_IN_SAME_WINDOW=1 h"
+alias dp="DIFF_TOOL=kdiff3 ccase diff -pre"
+alias dps="DIFF_TOOL=diff ccase diff -pre"
 
 export DIFF_TOOL=kdiff3
 export CPU=SVOS9_64
+
+rst()
+{
+    tcl_main resource tpc-$1 powerCycle
+}
 
 view()
 {
