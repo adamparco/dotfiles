@@ -10,7 +10,7 @@ set t_Co=256
 
 if has('gui_running')
   set guioptions-=T  " no toolbar
-  set lines=65 columns=120
+  set lines=65 columns=100
   set guifont=Courier\ 10\ Pitch\ 10
   set guioptions+=e
   set guitablabel=%M\ %t
