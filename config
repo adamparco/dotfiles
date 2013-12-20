@@ -1,12 +1,17 @@
-Host home
+Host blackbook
     HostName 99.236.41.107
     Port 22022
     User adamparco
 
+Host silversurfer
+    HostName 99.236.41.107
+    Port 22023
+    User adamparco
+
 Host sandvine
-	HostName lab.sandvine.com
-	Port 123
-	User aparco
+    HostName lab.sandvine.com
+    Port 123
+    User aparco
     LocalForward localhost:32000 aparco-pc1.sandvine.com:3389
     LocalForward localhost:32100 sw-codereview1.sandvine.com:80
     LocalForward localhost:32001 wtl-lview-1.sandvine.com:22
@@ -15,13 +20,13 @@ Host sandvine
     LocalForward localhost:32005 wtl-lview-5.sandvine.com:22
     LocalForward localhost:32006 wtl-lview-6.sandvine.com:22
     LocalForward localhost:32009 wtllab-test-9.phaedrus.sandvine.com:22
-	ForwardX11Trusted yes
+    ForwardX11Trusted yes
     ForwardAgent yes
 
 Host hlview
     HostName localhost
     Port 32003
-	ForwardX11Trusted yes
+    ForwardX11Trusted yes
     User aparco
     ForwardAgent yes
 
@@ -34,7 +39,7 @@ Host htest
 
 Host lview
     HostName wtl-lview-3
-	ForwardX11Trusted yes
+    ForwardX11Trusted yes
     ForwardAgent yes
 
 Host test

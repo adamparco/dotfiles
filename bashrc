@@ -50,7 +50,8 @@ elif [ `uname` = "Linux" ] ; then
 elif [ `uname` = "CYGWIN_NT-6.1-WOW64" ] ; then
     export DISPLAY=localhost:0.0
 elif [ `uname` = "Darwin" ] ; then
-    export DISPLAY=localhost:0.0
+    alias ls="ls -G"
+    #export DISPLAY=localhost:0.0
 fi
 
 if [ `uname` != "Linux" ] ; then
