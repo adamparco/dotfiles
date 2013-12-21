@@ -217,11 +217,19 @@ set laststatus=1
 " Remap VIM 0 to first non-blank character
 map 0 ^
 
+map <M-j> <C-j>
+
 " Move a line of text using ALT+[jk] or Comamnd+[jk] on mac
 nmap <M-j> mz:m+<cr>`z
 nmap <M-k> mz:m-2<cr>`z
 vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
 vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
+
+" For Mac in iTerm2
+nmap <ESC>j mz:m+<cr>`z
+nmap <ESC>k mz:m-2<cr>`z
+vmap <ESC>j :m'>+<cr>`<my`>mzgv`yo`z
+vmap <ESC>k :m'<-2<cr>`>my`<mzgv`yo`z
 
 if has("mac") || has("macunix")
   nmap <D-j> <M-j>

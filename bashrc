@@ -34,6 +34,9 @@ fi
 if [[ -f /etc/profile.d/sandvine.rc ]]; then . /etc/profile.d/sandvine.rc; fi
 #_______________________________________________________________________________________________________
 
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
 if [ `uname` = "SVOS" ] ; then
     sudo ln -sfn /home/aparco/.vimrc /root/.vimrc &>/dev/null
     sudo ln -sfn /home/aparco/.bashrc /root/.bashrc &>/dev/null
@@ -95,9 +98,25 @@ setPS()
 
 PROMPT_COMMAND='history -a; ccase_view; setPS'
 
+listtmux()
+{
+    # If we aren't in a tmux session right now, output session information
+    if which tmux >/dev/null 2>&1 && [ -z "$TMUX" ] ; then
+        if [ $(tmux list-sessions 2> /dev/null | wc -l) -gt 0 ]; then
+            echo
+            echo "Active tmux sessions:"
+            tmux list-sessions
+        else
+            echo "No tmux sessions active."
+        fi
+    fi
+}
+listtmux
+
+
 # Turn off Ctrl-S
-stty ixany
-stty ixoff -ixon
+#stty ixany
+#stty ixoff -ixon
 
 set -o vi
 shopt -s checkwinsize
@@ -161,7 +180,7 @@ diffa()
     fi
 }
 
-tpc()
+tpcadam()
 {
     if [ `uname` = "SVOS" ] ; then
         echo "On a TPC"
