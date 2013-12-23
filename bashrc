@@ -4,7 +4,7 @@
 #_______________________________________________________________________________________________________
 # Source global definitions
 if [ -f /etc/bashrc ]; then
-	. /etc/bashrc
+    . /etc/bashrc
 fi
 ##### SVDEV BEGIN #####
 if [ $(uname) = "Linux" ]; then
@@ -75,6 +75,7 @@ export PROMPT_DIRTRIM=5
 _DVIEW=""
 ccase_view()
 {
+    # Only linux box I currently go on is SV
     if [ `uname` = "Linux" ] ; then
         export DVIEW=`cat ~/.dview 2>/dev/null`
         _DVIEW=""
@@ -102,9 +103,15 @@ PROMPT_COMMAND='history -a; ccase_view; setPS'
 listtmux()
 {
     # If we aren't in a tmux session right now, output session information
-    if which tmux >/dev/null 2>&1 && [ -z "$TMUX" ] ; then
+    case `uname -a` in
+        *wtl-lview*)
+            check=1
+        ;;
+    esac
+
+    if [ $check = 1 ] && which tmux >/dev/null 2>&1 && [ -z "$TMUX" ] ; then
+        echo
         if [ $(tmux list-sessions 2> /dev/null | wc -l) -gt 0 ]; then
-            echo
             echo "Active tmux sessions:"
             tmux list-sessions
         else
@@ -137,8 +144,8 @@ HISTSIZE=9999
 HISTCONTROL=ignoredups:erasedups
 shopt -s histappend
 shopt -s cmdhist
-shopt -s histverify ## edit a recalled history line before executing                                      
-shopt -s histreedit ## reedit a history substitution line if it failed 
+shopt -s histverify ## edit a recalled history line before executing
+shopt -s histreedit ## reedit a history substitution line if it failed
 HISTIGNORE='ls:history:exit'
 
 alias ssh="ssh -Y"
