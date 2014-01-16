@@ -103,7 +103,6 @@ PROMPT_COMMAND='history -a; ccase_view; setPS'
 listtmux()
 {
     check=0
-    # If we aren't in a tmux session right now, output session information
     case `uname -a` in
         *wtl-lview*)
             check=1
