@@ -102,6 +102,7 @@ PROMPT_COMMAND='history -a; ccase_view; setPS'
 
 listtmux()
 {
+    check=0
     # If we aren't in a tmux session right now, output session information
     case `uname -a` in
         *wtl-lview*)
@@ -163,6 +164,7 @@ alias cd..="cd .."
 alias hs="TPC_IN_SAME_WINDOW=1 h"
 alias dp="DIFF_TOOL=kdiff3 ccase diff -pre"
 alias dps="DIFF_TOOL=diff ccase diff -pre"
+alias lsspec="ls --color=never /view/aparco_main/vobs/utils/build/cspec"
 
 export DIFF_TOOL=kdiff3
 export CPU=SVOS9_64
