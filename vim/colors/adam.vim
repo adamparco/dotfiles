@@ -37,7 +37,7 @@ hi NonText  guifg=#202020 guibg=grey8
 hi Question guifg=springgreen
 hi Search       guifg=white guibg=dodgerblue
 hi IncSearch    guifg=mediumpurple guibg=darkblue
-hi SpecialKey   guifg=yellowgreen
+hi SpecialKey   guifg=#303030
 hi StatusLine   guibg=#c2bfa5 guifg=black gui=none
 hi StatusLineNC guibg=#c2bfa5 guifg=grey50 gui=none
 hi Title    guifg=indianred
@@ -88,7 +88,7 @@ hi Todo      guifg=orangered guibg=yellow2
 "15      7*      White
 " color terminal definitions
 hi Normal   ctermfg=grey
-hi SpecialKey    ctermfg=darkgreen
+hi SpecialKey    ctermfg=darkgrey
 hi NonText       cterm=bold ctermfg=darkgrey
 hi Directory     ctermfg=darkcyan
 hi ErrorMsg      cterm=bold ctermfg=7 ctermbg=1
