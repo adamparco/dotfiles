@@ -63,6 +63,8 @@ else
     alias tcl='/view/aparco_main/vobs/fwtest/bin/tcl'
 fi
 
+MYVIMRC=~/.vimrc
+
 PATH=${HOME}/bin:${HOME}/scripts:$PATH
 
 CRST="\[\e[m\]"
@@ -94,7 +96,7 @@ ccase_view()
 
 setPS()
 {
-    export PS1="$CRST$CGREY\u$CRST@$CGREEN\h$CGREY$_DVIEW$CBLUE[\w]$CRST\n\$ "
+    export PS1="$CRST$CGREY\u$CRST@$CGREEN\h$CGREY$_DVIEW$CBLUE[\w]$CRST\n\\$ "
     export PS2="$CRST$CGREY>$CRST "
 }
 
@@ -148,16 +150,18 @@ shopt -s histverify ## edit a recalled history line before executing
 shopt -s histreedit ## reedit a history substitution line if it failed
 HISTIGNORE='ls:history:exit'
 
+export TERM=xterm-256color
+alias tmux="TERM=xterm-256color tmux -2"
 alias ssh="ssh -Y"
 alias l="ls"
 alias vi="vim"
 alias v="vim"
 alias g="gvim"
-alias AT="tmux attach"
+alias AT="TERM=xterm-256color tmux -2 attach"
 alias DT="tmux detach"
 alias UP="source ~/.bashrc"
-alias build="build -6"
-alias make="CPU=SVOS9_64 make -j 32"
+alias build64="build -6"
+alias make64="CPU=SVOS9_64 make -j 32"
 alias cd.="cd .."
 alias cd..="cd .."
 alias hs="TPC_IN_SAME_WINDOW=1 h"

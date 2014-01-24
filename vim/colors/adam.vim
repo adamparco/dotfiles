@@ -37,7 +37,7 @@ hi NonText  guifg=#202020 guibg=grey8
 hi Question guifg=springgreen
 hi Search       guifg=white guibg=dodgerblue
 hi IncSearch    guifg=mediumpurple guibg=darkblue
-hi SpecialKey   guifg=yellowgreen
+hi SpecialKey   guifg=#303030
 hi StatusLine   guibg=#c2bfa5 guifg=black gui=none
 hi StatusLineNC guibg=#c2bfa5 guifg=grey50 gui=none
 hi Title    guifg=indianred
@@ -53,11 +53,11 @@ hi String guifg=darksalmon
 
 " syntax highlighting groups
 hi Comment   guifg=SkyBlue
-hi Constant  guifg=#ffa0a0
+hi Constant  guifg=#ff8080
 hi Identifier    guifg=palegreen
 hi Statement     guifg=khaki
 hi PreProc   guifg=indianred
-hi Type      guifg=darkkhaki
+hi Type      guifg=yellowgreen
 hi Special   guifg=navajowhite
 "hi Underlined  
 hi Ignore    guifg=grey40
@@ -88,7 +88,7 @@ hi Todo      guifg=orangered guibg=yellow2
 "15      7*      White
 " color terminal definitions
 hi Normal   ctermfg=grey
-hi SpecialKey    ctermfg=darkgreen
+hi SpecialKey    ctermfg=darkgrey
 hi NonText       cterm=bold ctermfg=darkgrey
 hi Directory     ctermfg=darkcyan
 hi ErrorMsg      cterm=bold ctermfg=7 ctermbg=1
@@ -118,7 +118,7 @@ hi Special       ctermfg=lightyellow
 hi Identifier    ctermfg=darkgreen
 hi Statement     ctermfg=yellow
 hi PreProc       ctermfg=5
-hi Type          ctermfg=lightyellow
+hi Type          ctermfg=darkgreen
 hi Underlined    cterm=underline ctermfg=5
 hi Ignore        ctermfg=darkgrey
 hi Error         cterm=bold ctermfg=7 ctermbg=1
