@@ -53,11 +53,11 @@ hi String guifg=darksalmon
 
 " syntax highlighting groups
 hi Comment   guifg=SkyBlue
-hi Constant  guifg=#ffa0a0
+hi Constant  guifg=#ff8080
 hi Identifier    guifg=palegreen
 hi Statement     guifg=khaki
 hi PreProc   guifg=indianred
-hi Type      guifg=darkkhaki
+hi Type      guifg=yellowgreen
 hi Special   guifg=navajowhite
 "hi Underlined  
 hi Ignore    guifg=grey40
@@ -118,7 +118,7 @@ hi Special       ctermfg=lightyellow
 hi Identifier    ctermfg=darkgreen
 hi Statement     ctermfg=yellow
 hi PreProc       ctermfg=5
-hi Type          ctermfg=lightyellow
+hi Type          ctermfg=darkgreen
 hi Underlined    cterm=underline ctermfg=5
 hi Ignore        ctermfg=darkgrey
 hi Error         cterm=bold ctermfg=7 ctermbg=1

@@ -11,9 +11,9 @@ set number
 :ca X x
 :ca W w
 
+set t_Co=256
 set background=dark
 colorscheme adam
-set t_Co=256
 
 if has('gui_running')
   set guioptions-=T  " no toolbar
@@ -26,21 +26,26 @@ if has('gui_running')
   behave mswin
 else
   set hlsearch
+  set t_Co=256
+  set background=dark
+  colorscheme 256-grayvim
 endif
 
 "return to last line
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
-au BufRead,BufNewFile sv.* setfiletype sh
+autocmd BufRead,BufNewFile sv.* set filetype=sh
 au BufRead * if getline(1) == "#!/bin/bash" | set filetype=sh | endif
 au BufRead * if getline(1) == "#!/bin/sh" | set filetype=sh | endif
 autocmd BufRead,BufNewFile *.txt,*.email set spell | syn off
 
-" SV style calls for indentation by 4 spaces.
-"autocmd FileType cpp setl sw=4 expandtab
-" Use the FreeBSD style plugin with FreeBSD code.
-"autocmd BufRead,BufNewFile /vobs/fw-bsd/*.[ch],~/src/freebsd/*.[ch] call FreeBSD_Style() | set filetype=c
-"autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4
+autocmd BufRead,BufNewFile */vobs/fw-bsd/*.[ch] set tabstop=4|set shiftwidth=4|set noexpandtab
+
+augroup reload_vimrc " {
+    autocmd!
+    autocmd BufWritePost ~/.vimrc source ~/.vimrc
+augroup END " }
+
 
 "Paste Mode
 nnoremap <F2> :set invpaste paste?<CR>
@@ -53,7 +58,6 @@ vnoremap < <gv
 
 "line break at cursor location
 nmap <CR> i<Enter><Esc>
-
 
 "Cursor stuff
 set cursorline
