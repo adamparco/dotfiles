@@ -65,7 +65,7 @@ fi
 
 MYVIMRC=~/.vimrc
 
-PATH=${HOME}/bin:${HOME}/scripts:$PATH
+PATH=${HOME}/bin:/usr/local/bin:${HOME}/scripts:$PATH
 
 CRST="\[\e[m\]"
 CGREY="\[\e[38;5;240m\]"

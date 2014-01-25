@@ -5,6 +5,7 @@ set clipboard=unnamed
 set list
 set listchars=tab:>-,trail:-
 
+
 set number
 
 :ca Q q
@@ -129,7 +130,7 @@ set mat=2
 set noerrorbells
 set novisualbell
 set t_vb=
-set tm=500
+set tm=100 "set timeout small for esc hjkl problem
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -221,7 +222,7 @@ set laststatus=1
 " Remap VIM 0 to first non-blank character
 "map 0 ^
 
-map <M-j> <C-j>
+"map <M-j> <C-j>
 
 " Move a line of text using ALT+[jk] or Comamnd+[jk] on mac
 nmap <M-j> mz:m+<cr>`z
