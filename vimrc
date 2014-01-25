@@ -28,7 +28,7 @@ else
   set hlsearch
   set t_Co=256
   set background=dark
-  colorscheme 256-grayvim
+  colorscheme grayvim
 endif
 
 "return to last line

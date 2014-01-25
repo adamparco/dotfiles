@@ -12,7 +12,7 @@ hi Search	    ctermfg=232         ctermbg=160        cterm=Bold
 "IncSearch
 hi Type		    ctermfg=75          ctermbg=None       cterm=Bold
 hi Statement	ctermfg=75          ctermbg=None       cterm=None
-hi Comment	    ctermfg=18          ctermbg=None       cterm=None
+hi Comment	    ctermfg=111         ctermbg=None       cterm=None
 hi Identifier	ctermfg=111         ctermbg=None       cterm=Bold
 hi DiffText	    ctermfg=88          ctermbg=250        cterm=None
 hi Constant	    ctermfg=208         ctermbg=None       cterm=None
