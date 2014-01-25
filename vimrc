@@ -14,7 +14,7 @@ set number
 
 set t_Co=256
 set background=dark
-colorscheme adam
+colorscheme jellybeans
 
 if has('gui_running')
   set guioptions-=T  " no toolbar
@@ -26,9 +26,6 @@ if has('gui_running')
   source $VIMRUNTIME/mswin.vim
   behave mswin
 else
-  set hlsearch
-  set t_Co=256
-  set background=dark
   colorscheme grayvim
 endif
 
