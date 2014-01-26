@@ -26,7 +26,7 @@ if has('gui_running')
   source $VIMRUNTIME/mswin.vim
   behave mswin
 else
-  colorscheme grayvim
+  "colorscheme grayvim
 endif
 
 "return to last line
