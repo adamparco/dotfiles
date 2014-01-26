@@ -44,6 +44,7 @@ augroup reload_vimrc " {
     autocmd BufWritePost ~/.vimrc source ~/.vimrc
 augroup END " }
 
+let mapleader=","
 
 "Paste Mode
 nnoremap <F2> :set invpaste paste?<CR>
@@ -127,7 +128,7 @@ set mat=2
 set noerrorbells
 set novisualbell
 set t_vb=
-set tm=100 "set timeout small for esc hjkl problem
+set tm=200 "set timeout small for esc hjkl problem
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

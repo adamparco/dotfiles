@@ -301,7 +301,7 @@ if !exists("g:jellybeans_background_color")
   let g:jellybeans_background_color = "151515"
 end
 
-call s:X("Normal","e8e8d3",g:jellybeans_background_color,"","White","")
+call s:X("Normal","c6c6c6","000000","","White","")
 set background=dark
 
 if !exists("g:jellybeans_use_lowcolor_black") || g:jellybeans_use_lowcolor_black
@@ -327,8 +327,8 @@ endif
 call s:X("Visual","","404040","","",s:termBlack)
 call s:X("Cursor",g:jellybeans_background_color,"b0d0f0","","","")
 
-call s:X("LineNr","605958",g:jellybeans_background_color,"none",s:termBlack,"")
-call s:X("CursorLineNr","ccc5c4","","none","White","")
+call s:X("LineNr","303030",s:termBlack,"none",s:termBlack,"")
+call s:X("CursorLineNr","","","none","White","")
 call s:X("Comment","888888","","italic","Grey","")
 call s:X("Todo","c7c7c7","","bold","White",s:termBlack)
 
@@ -508,9 +508,9 @@ if !s:low_color
   hi CursorLine ctermbg=234
   hi SpecialKey ctermbg=234
   exec "hi NonText ctermbg=".g:jellybeans_background_color_256
-  exec "hi LineNr ctermbg=".g:jellybeans_background_color_256
+  exec "hi LineNr ctermbg=".s:termBlack
   hi DiffText ctermfg=81
-  exec "hi Normal ctermbg=".g:jellybeans_background_color_256
+  exec "hi Normal ctermbg=".s:termBlack
   hi DbgBreakPt ctermbg=53
   hi IndentGuidesOdd ctermbg=235
   hi IndentGuidesEven ctermbg=234
