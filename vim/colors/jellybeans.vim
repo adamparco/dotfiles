@@ -362,10 +362,10 @@ hi! link Operator Structure
 call s:X("Type","ffb964","","","Yellow","")
 call s:X("NonText","606060",g:jellybeans_background_color,"",s:termBlack,"")
 
-call s:X("SpecialKey","121212",g:jellybeans_background_color,"",s:termBlack,"")
+call s:X("SpecialKey","1c1c1c",g:jellybeans_background_color,"",s:termBlack,"")
 
 call s:X("Search","f0a0c0","302028","underline","Magenta","")
-call s:X("IncSearch","afff00","302028","underline","","")
+call s:X("IncSearch","83ED7E","253826","underline","Magenta","")
 
 call s:X("Directory","dad085","","","Yellow","")
 call s:X("ErrorMsg","","902020","","","DarkRed")
@@ -507,12 +507,11 @@ if !s:low_color
   hi SignColumn ctermbg=236
   hi CursorColumn ctermbg=234
   hi CursorLine ctermbg=234
-  "exec "hi SpecialKey ctermbg=".s:termBlack
-  "hi SpecialKey ctermfg=
-  exec "hi NonText ctermbg=".s:termBlack
-  exec "hi LineNr ctermbg=".s:termBlack
+  hi SpecialKey ctermbg=none
+  hi NonText ctermbg=none
+  hi LineNr ctermbg=none
   hi DiffText ctermfg=81
-  exec "hi Normal ctermbg=".s:termBlack
+  hi Normal ctermbg=none
   hi DbgBreakPt ctermbg=53
   hi IndentGuidesOdd ctermbg=235
   hi IndentGuidesEven ctermbg=234
