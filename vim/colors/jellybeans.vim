@@ -298,10 +298,10 @@ endfun
 " }}}
 
 if !exists("g:jellybeans_background_color")
-  let g:jellybeans_background_color = "151515"
+  let g:jellybeans_background_color = "080808"
 end
 
-call s:X("Normal","c6c6c6","000000","","White","")
+call s:X("Normal","c6c6c6",g:jellybeans_background_color,"","White","")
 set background=dark
 
 if !exists("g:jellybeans_use_lowcolor_black") || g:jellybeans_use_lowcolor_black
@@ -327,7 +327,7 @@ endif
 call s:X("Visual","","404040","","",s:termBlack)
 call s:X("Cursor",g:jellybeans_background_color,"b0d0f0","","","")
 
-call s:X("LineNr","303030","000000","none",s:termBlack,"")
+call s:X("LineNr","303030",g:jellybeans_background_color,"none",s:termBlack,"")
 call s:X("CursorLineNr","","","none","White","")
 call s:X("Comment","888888","","italic","Grey","")
 call s:X("Todo","c7c7c7","","bold","White",s:termBlack)
@@ -362,9 +362,10 @@ hi! link Operator Structure
 call s:X("Type","ffb964","","","Yellow","")
 call s:X("NonText","606060",g:jellybeans_background_color,"",s:termBlack,"")
 
-call s:X("SpecialKey","444444","1c1c1c","",s:termBlack,"")
+call s:X("SpecialKey","121212",g:jellybeans_background_color,"",s:termBlack,"")
 
 call s:X("Search","f0a0c0","302028","underline","Magenta","")
+call s:X("IncSearch","afff00","302028","underline","","")
 
 call s:X("Directory","dad085","","","Yellow","")
 call s:X("ErrorMsg","","902020","","","DarkRed")
@@ -506,8 +507,9 @@ if !s:low_color
   hi SignColumn ctermbg=236
   hi CursorColumn ctermbg=234
   hi CursorLine ctermbg=234
-  hi SpecialKey ctermbg=234
-  exec "hi NonText ctermbg=".g:jellybeans_background_color_256
+  "exec "hi SpecialKey ctermbg=".s:termBlack
+  "hi SpecialKey ctermfg=
+  exec "hi NonText ctermbg=".s:termBlack
   exec "hi LineNr ctermbg=".s:termBlack
   hi DiffText ctermfg=81
   exec "hi Normal ctermbg=".s:termBlack

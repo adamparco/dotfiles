@@ -2,7 +2,7 @@
 " attempt to use global copy buffer as default
 set clipboard=unnamed
 
-set list
+"set list
 set listchars=tab:>-,trail:-
 
 
