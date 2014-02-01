@@ -5,8 +5,27 @@ set clipboard=unnamed
 "set list
 set listchars=tab:>-,trail:-
 
-
 set number
+set autochdir
+
+let g:view = "none"
+function! AddPath()
+    let s:view_idx = stridx($PWD, "/view/")
+    if s:view_idx == 0
+        let s:slash_idx = stridx($PWD, "/", 6)
+        if s:slash_idx > 0
+            let g:view = strpart($PWD, 6, s:slash_idx - 6)
+        endif
+    endif
+    return g:view
+endfunction
+
+call AddPath()
+execute "set path+=/view/".g:view."/vobs/fw-bsd/src/include/**"
+execute "set path+=/view/".g:view."/vobs/fw-bsd/src/sys/**"
+execute "set path+=/view/".g:view."/vobs/fw-bsd/src/sys/amd64/include/**"
+execute "set path+=/view/".g:view."/vobs/fw/include/**"
+set path+=$PWD/**
 
 :ca Q q
 :ca X x
@@ -60,6 +79,16 @@ nmap <CR> i<Enter><Esc>
 
 "Cursor stuff
 set cursorline
+set cursorline
+
+" Default Colors for CursorLine
+"highlight  CursorLine ctermbg=Yellow ctermfg=None
+
+" Change Color when entering Insert Mode
+"autocmd InsertEnter * highlight  CursorLine ctermbg=Green ctermfg=Red
+
+" Revert Color to default when leaving Insert Mode
+"autocmd InsertLeave * highlight  CursorLine ctermbg=Yellow ctermfg=None
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General

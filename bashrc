@@ -69,8 +69,8 @@ PATH=${HOME}/bin:/usr/local/bin:${HOME}/scripts:$PATH
 
 CRST="\[\e[m\]"
 CGREY="\[\e[38;5;240m\]"
-CGREEN="\[\e[38;5;70m\]"
-CBLUE="\[\e[38;5;31m\]"
+CGREEN="\[\e[38;5;107m\]"
+CBLUE="\[\e[38;5;110m\]"
 CRED="\[\e[38;5;52m\]"
 
 export PROMPT_DIRTRIM=5
@@ -141,9 +141,10 @@ if [ -f /etc/bash_completion ]; then
 fi
 
 #history
-HISTFILESIZE=9999
-HISTSIZE=9999
-HISTCONTROL=ignoredups:erasedups
+export HISTFILESIZE=
+export HISTSIZE=
+export HISTCONTROL=ignoredups:erasedups
+export HISTFILE=~/.bash_history_eternal
 shopt -s histappend
 shopt -s cmdhist
 shopt -s histverify ## edit a recalled history line before executing
@@ -168,6 +169,7 @@ alias hs="TPC_IN_SAME_WINDOW=1 h"
 alias dp="DIFF_TOOL=kdiff3 ccase diff -pre"
 alias dps="DIFF_TOOL=diff ccase diff -pre"
 alias lsspec="ls --color=never /view/aparco_main/vobs/utils/build/cspec"
+alias grep="grep --color"
 
 export DIFF_TOOL=kdiff3
 export CPU=SVOS9_64
