@@ -330,7 +330,7 @@ call s:X("Cursor",g:jellybeans_background_color,"b0d0f0","","","")
 call s:X("LineNr","303030",g:jellybeans_background_color,"none",s:termBlack,"")
 call s:X("CursorLineNr","","","none","White","")
 call s:X("Comment","888888","","italic","Grey","")
-call s:X("Todo","DBA237","","bold","White",s:termBlack)
+call s:X("Todo","DEDEDE","","bold","White",s:termBlack)
 
 call s:X("StatusLine","000000","dddddd","italic","","White")
 call s:X("StatusLineNC","ffffff","403c41","italic","White","Black")
