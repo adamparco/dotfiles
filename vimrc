@@ -41,7 +41,7 @@ if has('gui_running')
   set guifont=Courier\ 10\ Pitch\ 10
   set guioptions+=e
   set guitablabel=%M\ %t
-  "winpos 50 50
+  winpos 100 40
   source $VIMRUNTIME/mswin.vim
   behave mswin
 else
@@ -81,14 +81,10 @@ nmap <CR> i<Enter><Esc>
 set cursorline
 set cursorline
 
-" Default Colors for CursorLine
-"highlight  CursorLine ctermbg=Yellow ctermfg=None
-
 " Change Color when entering Insert Mode
-"autocmd InsertEnter * highlight  CursorLine ctermbg=Green ctermfg=Red
-
+autocmd InsertEnter * highlight  CursorLine ctermbg=232 guibg=#0D0D0D
 " Revert Color to default when leaving Insert Mode
-"autocmd InsertLeave * highlight  CursorLine ctermbg=Yellow ctermfg=None
+autocmd InsertLeave * highlight  CursorLine ctermbg=233 guibg=#1c1c1c
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
