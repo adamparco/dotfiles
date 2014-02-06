@@ -79,7 +79,6 @@ nmap <CR> i<Enter><Esc>
 
 "Cursor stuff
 set cursorline
-set cursorline
 
 " Change Color when entering Insert Mode
 autocmd InsertEnter * highlight  CursorLine ctermbg=232 guibg=#0D0D0D
