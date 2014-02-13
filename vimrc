@@ -56,7 +56,7 @@ au BufRead * if getline(1) == "#!/bin/bash" | set filetype=sh | endif
 au BufRead * if getline(1) == "#!/bin/sh" | set filetype=sh | endif
 autocmd BufRead,BufNewFile *.txt,*.email set spell | syn off
 
-autocmd BufRead,BufNewFile */vobs/fw-bsd/*.[ch] set tabstop=4|set shiftwidth=4|set noexpandtab
+autocmd BufRead,BufNewFile */vobs/fw-bsd/*.[ch] set tabstop=8|set shiftwidth=8|set noexpandtab
 
 augroup reload_vimrc " {
     autocmd!

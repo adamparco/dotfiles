@@ -44,12 +44,14 @@ if [ `uname` = "SVOS" ] ; then
     sudo ln -sfn /home/aparco/.vim /root/.vim &>/dev/null
     alias gvim='vim'
     alias ls="ls -G"
+	export LSCOLORS="ExCxcxdxBxegedabagacad"
 elif [ `uname` = "FreeBSD" ] ; then
     alias ls="ls -G"
-    export LSCOLORS="gxfxcxdxbxegedabagacad"
+    export LSCOLORS="ExCxcxdxBxegedabagacad"
 elif [ `uname` = "Linux" ] ; then
     alias ls="ls --color"
-    export LS_COLORS="no=00:fi=00:di=00;36:ln=00;35:pi=40;33:so=00;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:ex=00;31:*.c md=00;32:*.exe=00;32:*.com=00;32:*.btm=00;32:*.bat=00;32:*.sh=00;32:*.csh=00;32:*.tar=00;31:*.tgz=00;31:*.arj=00;31:*.taz=00;31:*.lz h=00;31:*.zip=00;31:*.z=00;31:*.Z=00;31:*.gz=00;31:*.bz2=00;31:*.bz=00;31:*.tz=00;31:*.rpm=00;31:*.cpio=00;31:*.jpg=00;35:*.gif=00;3 5:*.bmp=00;35:*.xbm=00;35:*.xpm=00;35:*.png=00;35:*.tif=00;35:"
+    #export LS_COLORS="no=00:fi=00:di=00;36:ln=00;35:pi=40;33:so=00;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:ex=00;31:*.c md=00;32:*.exe=00;32:*.com=00;32:*.btm=00;32:*.bat=00;32:*.sh=00;32:*.csh=00;32:*.tar=00;31:*.tgz=00;31:*.arj=00;31:*.taz=00;31:*.lz h=00;31:*.zip=00;31:*.z=00;31:*.Z=00;31:*.gz=00;31:*.bz2=00;31:*.bz=00;31:*.tz=00;31:*.rpm=00;31:*.cpio=00;31:*.jpg=00;35:*.gif=00;3 5:*.bmp=00;35:*.xbm=00;35:*.xpm=00;35:*.png=00;35:*.tif=00;35:"
+	export LS_COLORS="no=00:fi=00:di=00;94:ln=00;92:pi=40;33:so=00;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:ex=00;91:ow=00;94:"
 elif [ `uname` = "CYGWIN_NT-6.1-WOW64" ] ; then
     export DISPLAY=localhost:0.0
 elif [ `uname` = "Darwin" ] ; then
@@ -72,7 +74,7 @@ CGREEN="\[\e[38;5;107m\]"
 CBLUE="\[\e[38;5;110m\]"
 CRED="\[\e[38;5;52m\]"
 
-export PROMPT_DIRTRIM=5
+export PROMPT_DIRTRIM=4
 _DVIEW=""
 ccase_view()
 {
@@ -95,7 +97,7 @@ ccase_view()
 
 setPS()
 {
-    export PS1="$CRST$CGREY\u$CRST@$CGREEN\h$CGREY$_DVIEW$CBLUE[\w]$CRST\n\\$ "
+    export PS1="$CRST$CGREY\u$CRST@$CGREEN\h$CBLUE[\w]$CGREY$_DVIEW$CRST\\$ "
     export PS2="$CRST$CGREY>$CRST "
 }
 
@@ -127,7 +129,7 @@ listtmux
 #stty ixany
 #stty ixoff -ixon
 
-set -o vi
+set -o emacs
 shopt -s checkwinsize
 
 set completion-ignore-case on
@@ -150,11 +152,10 @@ shopt -s histverify ## edit a recalled history line before executing
 shopt -s histreedit ## reedit a history substitution line if it failed
 HISTIGNORE='ls:history:exit'
 
-export TERM=xterm-256color
+export TERM=screen-256color
 alias tmux="TERM=xterm-256color tmux -2"
 alias ssh="ssh -Y"
-alias l="ls"
-alias vi="vim"
+alias l="ls -la"
 alias v="vim"
 alias g="gvim"
 alias AT="TERM=xterm-256color tmux -2 attach"
@@ -194,17 +195,6 @@ diffa()
     fi
 }
 
-tpcadam()
-{
-    if [ `uname` = "SVOS" ] ; then
-        echo "On a TPC"
-    elif [ `uname` = "FreeBSD" ] ; then
-        ssh tpc-%1
-    elif [ `uname` = "Linux" ] ; then
-        ssh -A -t test ssh -A -t tpc-$1
-    fi
-}
-
 cdd()
 {
     cnt=$1
@@ -213,31 +203,4 @@ cdd()
         cd ..
         cnt=$(($cnt - 1))
     done
-}
-
-svtrace_set_channel()
-{
-    [ -z "$svtrace_pdb_path" ] && svtrace_pdb_path="cse/local/devices/svtrace/1/2/100"
-
-    ch=$1
-    val=$2
-    if [ -z "$1" ];  then
-        choice=$(pdbClient -c "lst $svtrace_pdb_path" |  awk '{nlines++; if (nlines>2) print$2}'|sort |xargs)
-        select c in $choice;
-        do
-            ch=$c
-            break;
-        done
-    fi
-
-    if [ -z "$2" ];  then
-        echo "Value to give:" ; read val
-    fi
-
-    echo "Before"
-    pdbClient -c "lst $svtrace_pdb_path" | grep -w $ch
-    chn=$(pdbClient -c "lst $svtrace_pdb_path" | grep -w $ch | awk '{print$1}')
-    pdbClient -c "set $svtrace_pdb_path/1/level/$chn $val"
-    echo "After"
-    pdbClient -c "lst $svtrace_pdb_path" | grep -w $ch
 }
