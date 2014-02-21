@@ -8,6 +8,9 @@ set listchars=tab:>-,trail:-
 set number
 set autochdir
 
+"don't clear the screen
+"set t_ti= t_te=
+
 let g:view = "none"
 function! AddPath()
     let s:view_idx = stridx($PWD, "/view/")
@@ -37,7 +40,7 @@ colorscheme jellybeans
 
 if has('gui_running')
   set guioptions-=T  " no toolbar
-  set lines=65 columns=100
+  set lines=65 columns=95
   set guifont=Courier\ 10\ Pitch\ 10
   set guioptions+=e
   set guitablabel=%M\ %t

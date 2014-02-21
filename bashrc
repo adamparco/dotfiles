@@ -38,6 +38,9 @@ if [[ -f /etc/profile.d/sandvine.rc ]]; then . /etc/profile.d/sandvine.rc; fi
 [[ $- != *i* ]] && return
 
 if [ `uname` = "SVOS" ] ; then
+	if [ $TERM = "screen-256color" ] ; then
+		export TERM=screen
+	fi
     sudo ln -sfn /home/aparco/.vimrc /root/.vimrc &>/dev/null
     sudo ln -sfn /home/aparco/.bashrc /root/.bashrc &>/dev/null
     sudo ln -sfn /home/aparco/.bash_profile /root/.bash_profile &>/dev/null
@@ -88,16 +91,16 @@ ccase_view()
             echo $DVIEW > ~/.dview
 
             num=`echo "$PWD" | grep -o "/" | wc -l`
-            if [ $PROMPT_DIRTRIM -gt 0 -a $num -gt $(($PROMPT_DIRTRIM +1)) ] ; then
+            #if [ $PROMPT_DIRTRIM -gt 0 -a $num -gt $(($PROMPT_DIRTRIM +1)) ] ; then
                 _DVIEW="["$DVIEW"]"
-            fi
+            #fi
         fi
     fi
 }
 
 setPS()
 {
-    export PS1="$CRST$CGREY\u$CRST@$CGREEN\h$CBLUE[\w]$CGREY$_DVIEW$CRST\\$ "
+    export PS1="$CRST$CGREY\u$CRST@$CGREEN\h$CGREY$_DVIEW$CBLUE[\W]$CRST\\$ "
     export PS2="$CRST$CGREY>$CRST "
 }
 
@@ -152,13 +155,14 @@ shopt -s histverify ## edit a recalled history line before executing
 shopt -s histreedit ## reedit a history substitution line if it failed
 HISTIGNORE='ls:history:exit'
 
-export TERM=screen-256color
-alias tmux="TERM=xterm-256color tmux -2"
+#alias tmux="TERM=screen-256color tmux -2"
+alias tmux="tmux -2"
 alias ssh="ssh -Y"
 alias l="ls -la"
 alias v="vim"
 alias g="gvim"
-alias AT="TERM=xterm-256color tmux -2 attach"
+#alias AT="TERM=screen-256color tmux -2 attach"
+alias AT="tmux -2 attach"
 alias DT="tmux detach"
 alias UP="source ~/.bashrc"
 alias build64="build -6"
@@ -168,8 +172,10 @@ alias cd..="cd .."
 alias hs="TPC_IN_SAME_WINDOW=1 h"
 alias dp="DIFF_TOOL=kdiff3 ccase diff -pre"
 alias dps="DIFF_TOOL=diff ccase diff -pre"
+alias dh="DIFF_TOOL=kdiff3 ccase diff"
+alias dhs="DIFF_TOOL=diff ccase diff"
 alias lsspec="ls --color=never /view/aparco_main/vobs/utils/build/cspec"
-alias grep="grep --color"
+alias grep="grep --color=auto"
 
 export DIFF_TOOL=kdiff3
 export CPU=SVOS9_64
