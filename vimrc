@@ -55,6 +55,7 @@ endif
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 autocmd BufRead,BufNewFile sv.* set filetype=sh
+autocmd BufRead,BufNewFile *.svpp set filetype=sh
 au BufRead * if getline(1) == "#!/bin/bash" | set filetype=sh | endif
 au BufRead * if getline(1) == "#!/bin/sh" | set filetype=sh | endif
 autocmd BufRead,BufNewFile *.txt,*.email set spell | syn off
