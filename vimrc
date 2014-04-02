@@ -1,3 +1,5 @@
+let Cscope_OpenQuickfixWindow = 1
+let Cscope_AutoClose = 1
 
 " attempt to use global copy buffer as default
 set clipboard=unnamed
@@ -60,7 +62,7 @@ au BufRead * if getline(1) == "#!/bin/bash" | set filetype=sh | endif
 au BufRead * if getline(1) == "#!/bin/sh" | set filetype=sh | endif
 autocmd BufRead,BufNewFile *.txt,*.email set spell | syn off
 
-autocmd BufRead,BufNewFile */vobs/fw-bsd/*.[ch] set tabstop=8|set shiftwidth=8|set noexpandtab
+:autocmd BufRead,BufNewFile */checklist/checklist_*.temp* %s/!!! FILL IN !!!/N\/A/g
 
 augroup reload_vimrc " {
     autocmd!
@@ -79,7 +81,7 @@ vnoremap > >gv
 vnoremap < <gv
 
 "line break at cursor location
-nmap <CR> i<Enter><Esc>
+"nmap <CR> i<Enter><Esc>
 
 "Cursor stuff
 set cursorline
@@ -194,6 +196,8 @@ set smarttab
 set shiftwidth=4
 set tabstop=4
 
+autocmd BufRead,BufNewFile */vobs/fw-bsd/* set tabstop=8|set shiftwidth=8|set noexpandtab
+
 " Linebreak on 500 characters
 set lbr
 set tw=500
@@ -218,10 +222,6 @@ vnoremap <silent> # :call VisualSelection('b')<CR>
 " Treat long lines as break lines (useful when moving around in them)
 map j gj
 map k gk
-
-" Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
-map <space> /
-map <c-space> ?
 
 " Return to last edit position when opening files (You want this!)
 autocmd BufReadPost *

@@ -37,9 +37,12 @@ if [[ -f /etc/profile.d/sandvine.rc ]]; then . /etc/profile.d/sandvine.rc; fi
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-# Turn off Ctrl-S
-#stty ixany
-#stty ixoff -ixon
+#SVDEV sets this and makes this terrible
+#unset VIMINIT
+
+# Turn off Ctrl-S flow control binding, and allow for emacs Ctrl-s forward search
+stty ixany
+stty ixoff -ixon
 
 set -o emacs
 shopt -s checkwinsize
@@ -80,16 +83,17 @@ alias cd.="cd .."
 alias cd..="cd .."
 alias hs="TPC_IN_SAME_WINDOW=1 h"
 alias dp="DIFF_TOOL=kdiff3 ccase diff -pre"
-alias dps="DIFF_TOOL=diff ccase diff -pre | more"
+alias dps="DIFF_TOOL=diff ccase diff -pre"
 alias dh="DIFF_TOOL=kdiff3 ccase diff"
-alias dhs="DIFF_TOOL=diff ccase diff | more"
+alias dhs="DIFF_TOOL=diff ccase diff"
 alias lsspec="ls --color=never /view/aparco_main/vobs/utils/build/cspec"
 alias grep="grep --color=auto"
 alias lsproj="c lsproject -s -invob /vobs/fw-ucm"
+alias cclinks="sudo /m/test_main/labconfig/admin/labify/conf/cclinks"
 
 export DIFF_TOOL=kdiff3
 export CPU=SVOS9_64
-
+export VISUAL="gvim --nofork"
 if [ `uname` = "SVOS" ] ; then
 	if [ $TERM = "screen-256color" ] ; then
 		export TERM=screen
@@ -101,6 +105,7 @@ if [ `uname` = "SVOS" ] ; then
     alias gvim='vim'
     alias ls="ls -G"
 	export LSCOLORS="ExCxcxdxBxegedabagacad"
+	export VISUAL="vim"
 elif [ `uname` = "FreeBSD" ] ; then
     alias ls="ls -G"
     export LSCOLORS="ExCxcxdxBxegedabagacad"
@@ -218,4 +223,47 @@ resetme()
     local tpc=${HOSTNAME%%.*}
     echo "Resetting $tpc"
     ssh -A -t wtllab-test-1.phaedrus.sandvine.com "/m/test_main/fwtest/bin/tcl resource $tpc powerCycle"
+	#nohup ssh -A -t wtllab-test-1.phaedrus.sandvine.com "/m/test_main/fwtest/bin/tcl resource $tpc powerCycle" &
+}
+
+execute_in_all_panes()
+{
+  # Notate which window/pane we were originally at
+  ORIG_WINDOW_INDEX=`tmux display-message -p '#I'`
+  ORIG_PANE_INDEX=`tmux display-message -p '#P'`
+ 
+  # Assign the argument to something readable
+  command=$1
+ 
+  # Count how many windows we have
+  windows=$((`tmux list-windows | wc -l`))
+ 
+  # Loop through the windows
+  for (( window=0; window <= $windows; window++ )); do
+    tmux select-window -t $window #select the window
+ 
+    # Count how many panes there are in the window
+    panes=$((`tmux list-panes| wc -l`))
+ 
+    # Loop through the panes that are in the window
+    for (( pane=0; pane < $panes; pane++ )); do
+      # Skip the window that the command was ran in, run it in that window last
+      # since we don't want to suspend the script that we are currently running
+      # and also we want to end back where we started..
+      if [ $ORIG_WINDOW_INDEX -eq $window -a $ORIG_PANE_INDEX -eq $pane ]; then
+          continue
+      fi
+      tmux select-pane -t $pane #select the pane
+      tmux send-keys "$command" C-m
+    done
+  done
+ 
+  tmux select-window -t $ORIG_WINDOW_INDEX #select the original window
+  tmux select-pane -t $ORIG_PANE_INDEX #select the original pane
+  #tmux send-keys "$command" C-m
+}
+
+refresh_display()
+{
+	execute_in_all_panes "export DISPLAY=$DISPLAY"
 }
