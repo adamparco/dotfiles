@@ -1,8 +1,11 @@
 let Cscope_OpenQuickfixWindow = 1
 let Cscope_AutoClose = 1
+let Cscope_TagOrder = 1
 
 " attempt to use global copy buffer as default
 set clipboard=unnamed
+
+
 
 "set list
 set listchars=tab:>-,trail:-
@@ -50,7 +53,8 @@ if has('gui_running')
   source $VIMRUNTIME/mswin.vim
   behave mswin
 else
-  "colorscheme grayvim
+  " Set n lines to the cursor - when moving vertically using j/k
+  set so=5
 endif
 
 "return to last line
@@ -109,8 +113,6 @@ set autoread
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Set n lines to the cursor - when moving vertically using j/k
-set so=5
 
 " Turn on the WiLd menu
 set wildmenu

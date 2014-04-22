@@ -78,7 +78,9 @@ alias AT="tmux -2 attach"
 alias DT="tmux detach"
 alias UP="source ~/.bashrc"
 alias build64="build -6"
+alias build32="build -5"
 alias make64="CPU=SVOS9_64 make -j 32"
+alias make32="CPU=SVOS9 make -j 32"
 alias cd.="cd .."
 alias cd..="cd .."
 alias hs="TPC_IN_SAME_WINDOW=1 h"
@@ -90,6 +92,7 @@ alias lsspec="ls --color=never /view/aparco_main/vobs/utils/build/cspec"
 alias grep="grep --color=auto"
 alias lsproj="c lsproject -s -invob /vobs/fw-ucm"
 alias cclinks="sudo /m/test_main/labconfig/admin/labify/conf/cclinks"
+alias tpc="/m/test_main/fwtest/TLA/bin/tpc"
 
 export DIFF_TOOL=kdiff3
 export CPU=SVOS9_64
@@ -106,6 +109,7 @@ if [ `uname` = "SVOS" ] ; then
     alias ls="ls -G"
 	export LSCOLORS="ExCxcxdxBxegedabagacad"
 	export VISUAL="vim"
+    alias svup='sudo /usr/local/sandvine/svupdate/svupdate -b3 -U ftp://ftp:ftp@lab-ftp:/released'
 elif [ `uname` = "FreeBSD" ] ; then
     alias ls="ls -G"
     export LSCOLORS="ExCxcxdxBxegedabagacad"
