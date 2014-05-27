@@ -30,6 +30,13 @@ Host hlview
     User aparco
     ForwardAgent yes
 
+Host vlview
+    HostName wtl-lview-3.sandvine.com
+    Port 22
+    ForwardX11Trusted yes
+    User aparco
+    ForwardAgent yes
+
 Host htest
     HostName localhost
     Port 32009
