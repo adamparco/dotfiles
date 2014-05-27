@@ -1,11 +1,13 @@
 let Cscope_OpenQuickfixWindow = 1
 let Cscope_AutoClose = 1
-let Cscope_TagOrder = 1
+let Cscope_TagOrder = 0
+
+"added for omnicomplete
+set nocp
+filetype plugin on
 
 " attempt to use global copy buffer as default
 set clipboard=unnamed
-
-
 
 "set list
 set listchars=tab:>-,trail:-
@@ -14,7 +16,7 @@ set number
 set autochdir
 
 "don't clear the screen
-"set t_ti= t_te=
+set t_ti= t_te=
 
 let g:view = "none"
 function! AddPath()
@@ -38,6 +40,17 @@ set path+=$PWD/**
 :ca Q q
 :ca X x
 :ca W w
+
+:map <C-c> :close<CR>
+:map <C-f> :NERDTree<CR>
+"Fix VIM corruption in TMUX when using NERDTree
+let g:NERDTreeDirArrows = 0
+
+"keys to move around windows
+:map <C-h> <C-w>h
+:map <C-j> <C-w>j
+:map <C-k> <C-w>k
+:map <C-l> <C-w>l
 
 set t_Co=256
 set background=dark
@@ -83,6 +96,10 @@ set showmode
 "retain shift selection after shifting
 vnoremap > >gv
 vnoremap < <gv
+
+"One > or < will shift in/out
+"noremap > >>
+"noremap < <<
 
 "line break at cursor location
 "nmap <CR> i<Enter><Esc>

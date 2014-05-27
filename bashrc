@@ -93,10 +93,12 @@ alias grep="grep --color=auto"
 alias lsproj="c lsproject -s -invob /vobs/fw-ucm"
 alias cclinks="sudo /m/test_main/labconfig/admin/labify/conf/cclinks"
 alias tpc="/m/test_main/fwtest/TLA/bin/tpc"
+alias bsdftp="ftp fbsd-ftp"
 
 export DIFF_TOOL=kdiff3
 export CPU=SVOS9_64
 export VISUAL="gvim --nofork"
+
 if [ `uname` = "SVOS" ] ; then
 	if [ $TERM = "screen-256color" ] ; then
 		export TERM=screen
@@ -114,6 +116,10 @@ elif [ `uname` = "FreeBSD" ] ; then
     alias ls="ls -G"
     export LSCOLORS="ExCxcxdxBxegedabagacad"
 elif [ `uname` = "Linux" ] ; then
+
+	[ -f /usr/local/fw-tools/Linux/bin/vim ] && alias vim=/usr/local/fw-tools/Linux/bin/vim 
+	[ -f /usr/local/fw-tools/Linux/bin/gvim ] && alias gvim=/usr/local/fw-tools/Linux/bin/gvim 
+
     alias ls="ls --color"
 	export LS_COLORS="no=00:fi=00:di=00;94:ln=00;92:pi=40;33:so=00;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:ex=00;91:ow=00;94:"
 elif [ `uname` = "CYGWIN_NT-6.1-WOW64" ] ; then
@@ -124,8 +130,6 @@ fi
 
 if [ `uname` != "Linux" ] ; then
     alias tcl='/m/test_main/fwtest/bin/tcl'
-else
-    alias tcl='/view/aparco_main/vobs/fwtest/bin/tcl'
 fi
 
 PATH=${HOME}/bin:/usr/local/bin:${HOME}/scripts:$PATH
@@ -136,7 +140,7 @@ CGREEN="\[\e[38;5;107m\]"
 CBLUE="\[\e[38;5;110m\]"
 CRED="\[\e[38;5;52m\]"
 
-export PROMPT_DIRTRIM=4
+export PROMPT_DIRTRIM=1
 _DVIEW=""
 ccase_view()
 {
@@ -150,9 +154,9 @@ ccase_view()
             echo $DVIEW > ~/.dview
 
             num=`echo "$PWD" | grep -o "/" | wc -l`
-            #if [ $PROMPT_DIRTRIM -gt 0 -a $num -gt $(($PROMPT_DIRTRIM +1)) ] ; then
+            if [ $PROMPT_DIRTRIM -gt 0 -a $num -gt $(($PROMPT_DIRTRIM +1)) ] ; then
                 _DVIEW="["$DVIEW"]"
-            #fi
+            fi
         fi
     fi
 }
