@@ -13,7 +13,10 @@ set clipboard=unnamed
 set listchars=tab:>-,trail:-
 
 set number
-set autochdir
+
+if version >= 730
+	set autochdir
+endif
 
 "don't clear the screen
 set t_ti= t_te=
@@ -35,6 +38,9 @@ execute "set path+=/view/".g:view."/vobs/fw-bsd/src/include/**"
 execute "set path+=/view/".g:view."/vobs/fw-bsd/src/sys/**"
 execute "set path+=/view/".g:view."/vobs/fw-bsd/src/sys/amd64/include/**"
 execute "set path+=/view/".g:view."/vobs/fw/include/**"
+
+execute "set path+=/view/".g:view."/vobs/fw-vendor/mockpp/**"
+
 set path+=$PWD/**
 
 :ca Q q
@@ -308,6 +314,28 @@ map <leader>ss :setlocal spell!<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! HeaderFunc()
+  let gatename = substitute(toupper(expand("%:t")), "\\.", "_", "g")
+  let filename = expand("%:t")
+  execute "normal! ggO/**"
+  execute "normal! o @file " . filename
+  execute "normal! o"
+  execute "normal! o NEWFILE"
+  execute "normal! o"
+  execute "normal! o @Copyright Sandvine Incorporated - All rights reserved"
+  execute "normal! o"
+  execute "normal! o/"
+  execute "normal! o#ifndef " . gatename
+  execute "normal! o#define " . gatename . " "
+  execute "normal! Go#endif /* " . gatename . " */"
+  execute "normal! 4G"
+  execute "normal! 3l"
+endfunction
+command! Headers call HeaderFunc()
+autocmd BufNewFile *.{h,hpp} :call HeaderFunc()
+
+
+
 function! CmdLine(str)
     exe "menu Foo.Bar :" . a:str
     emenu Foo.Bar
