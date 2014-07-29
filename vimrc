@@ -67,7 +67,7 @@ let g:NERDTreeDirArrows = 0
 
 set t_Co=256
 set background=dark
-#colorscheme jellybeans
+colorscheme jellybeans
 
 if has('gui_running')
   set guioptions-=T  " no toolbar
