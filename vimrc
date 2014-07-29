@@ -2,9 +2,11 @@ let Cscope_OpenQuickfixWindow = 1
 let Cscope_AutoClose = 1
 let Cscope_TagOrder = 0
 
+set tags=/dev/null
+
 "added for omnicomplete
-set nocp
-filetype plugin on
+"set nocp
+"filetype plugin on
 
 " attempt to use global copy buffer as default
 set clipboard=unnamed
@@ -19,7 +21,7 @@ if version >= 730
 endif
 
 "don't clear the screen
-set t_ti= t_te=
+"set t_ti= t_te=
 
 let g:view = "none"
 function! AddPath()
@@ -38,6 +40,11 @@ execute "set path+=/view/".g:view."/vobs/fw-bsd/src/include/**"
 execute "set path+=/view/".g:view."/vobs/fw-bsd/src/sys/**"
 execute "set path+=/view/".g:view."/vobs/fw-bsd/src/sys/amd64/include/**"
 execute "set path+=/view/".g:view."/vobs/fw/include/**"
+
+execute "set path+=/view/".g:view."/vobs/fw/drvr/ident/**"
+execute "set path+=/view/".g:view."/vobs/fw/support/hal/**"
+execute "set path+=/view/".g:view."/vobs/fw/support/ident/**"
+
 
 execute "set path+=/view/".g:view."/vobs/fw-vendor/mockpp/**"
 
@@ -60,7 +67,7 @@ let g:NERDTreeDirArrows = 0
 
 set t_Co=256
 set background=dark
-colorscheme jellybeans
+#colorscheme jellybeans
 
 if has('gui_running')
   set guioptions-=T  " no toolbar
@@ -322,8 +329,6 @@ function! HeaderFunc()
   execute "normal! o"
   execute "normal! o NEWFILE"
   execute "normal! o"
-  execute "normal! o @Copyright Sandvine Incorporated - All rights reserved"
-  execute "normal! o"
   execute "normal! o/"
   execute "normal! o#ifndef " . gatename
   execute "normal! o#define " . gatename . " "
@@ -334,6 +339,20 @@ endfunction
 command! Headers call HeaderFunc()
 autocmd BufNewFile *.{h,hpp} :call HeaderFunc()
 
+function! CHeaderFunc()
+  let gatename = substitute(toupper(expand("%:t")), "\\.", "_", "g")
+  let filename = expand("%:t")
+  execute "normal! ggO/**"
+  execute "normal! o @file " . filename
+  execute "normal! o"
+  execute "normal! o NEWFILE"
+  execute "normal! o"
+  execute "normal! o/"
+  execute "normal! 4G"
+  execute "normal! 3l"
+endfunction
+command! CHeaders call CHeaderFunc()
+autocmd BufNewFile *.{c,cpp} :call CHeaderFunc()
 
 
 function! CmdLine(str)

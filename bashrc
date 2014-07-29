@@ -79,8 +79,9 @@ alias DT="tmux detach"
 alias UP="source ~/.bashrc"
 alias build64="build -6"
 alias build32="build -5"
-alias make64="CPU=SVOS9_64 make -j 32"
-alias make32="CPU=SVOS9 make -j 32"
+alias make64="CPU=SVOS9_64 make -j 64"
+alias m="CPU=SVOS9_64 make -j 64"
+alias make32="CPU=SVOS9 make -j 64"
 alias cd.="cd .."
 alias cd..="cd .."
 alias hs="TPC_IN_SAME_WINDOW=1 h"
@@ -274,4 +275,9 @@ execute_in_all_panes()
 refresh_display()
 {
 	execute_in_all_panes "export DISPLAY=$DISPLAY"
+}
+
+refresh_environment()
+{
+	execute_in_all_panes "source ~/.bashrc"
 }
