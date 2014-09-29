@@ -332,7 +332,7 @@ call s:X("CursorLineNr","","","none","White","")
 call s:X("Comment","888888","","italic","Grey","")
 call s:X("Todo","DEDEDE","","bold","White",s:termBlack)
 
-call s:X("StatusLine","000000","dddddd","italic","","White")
+call s:X("StatusLine","","1c1c1c","italic","",s:termBlack)
 call s:X("StatusLineNC","ffffff","403c41","italic","White","Black")
 call s:X("VertSplit","777777","403c41","",s:termBlack,s:termBlack)
 call s:X("WildMenu","f0a0c0","302028","","Magenta","")

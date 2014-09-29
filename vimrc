@@ -88,6 +88,7 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 
 autocmd BufRead,BufNewFile sv.* set filetype=sh
 autocmd BufRead,BufNewFile *.svpp set filetype=sh
+autocmd BufRead,BufNewFile *.subr set filetype=sh
 au BufRead * if getline(1) == "#!/bin/bash" | set filetype=sh | endif
 au BufRead * if getline(1) == "#!/bin/sh" | set filetype=sh | endif
 autocmd BufRead,BufNewFile *.txt,*.email set spell | syn off
@@ -111,8 +112,8 @@ vnoremap > >gv
 vnoremap < <gv
 
 "One > or < will shift in/out
-"noremap > >>
-"noremap < <<
+nnoremap > >>
+nnoremap < <<
 
 "line break at cursor location
 "nmap <CR> i<Enter><Esc>
@@ -271,8 +272,8 @@ set viminfo^=%
 set laststatus=1
 
 " Format the status line
-" set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
-
+"set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
+set statusline+=%F
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Editing mappings
@@ -324,36 +325,15 @@ map <leader>ss :setlocal spell!<cr>
 function! HeaderFunc()
   let gatename = substitute(toupper(expand("%:t")), "\\.", "_", "g")
   let filename = expand("%:t")
-  execute "normal! ggO/**"
-  execute "normal! o @file " . filename
-  execute "normal! o"
-  execute "normal! o NEWFILE"
-  execute "normal! o"
-  execute "normal! o/"
-  execute "normal! o#ifndef " . gatename
+  execute "normal! O#ifndef " . gatename
   execute "normal! o#define " . gatename . " "
+  execute "normal! o"
+  execute "normal! o"
   execute "normal! Go#endif /* " . gatename . " */"
-  execute "normal! 4G"
-  execute "normal! 3l"
+  execute "normal! 2k"
 endfunction
 command! Headers call HeaderFunc()
 autocmd BufNewFile *.{h,hpp} :call HeaderFunc()
-
-function! CHeaderFunc()
-  let gatename = substitute(toupper(expand("%:t")), "\\.", "_", "g")
-  let filename = expand("%:t")
-  execute "normal! ggO/**"
-  execute "normal! o @file " . filename
-  execute "normal! o"
-  execute "normal! o NEWFILE"
-  execute "normal! o"
-  execute "normal! o/"
-  execute "normal! 4G"
-  execute "normal! 3l"
-endfunction
-command! CHeaders call CHeaderFunc()
-autocmd BufNewFile *.{c,cpp} :call CHeaderFunc()
-
 
 function! CmdLine(str)
     exe "menu Foo.Bar :" . a:str

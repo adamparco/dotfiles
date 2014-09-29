@@ -64,26 +64,45 @@ export HISTFILE=~/.bash_history_eternal
 shopt -s histappend
 shopt -s cmdhist
 shopt -s histverify ## edit a recalled history line before executing
-shopt -s histreedit ## reedit a history substitution line if it failed
+#shopt -s histreedit ## reedit a history substitution line if it failed
 HISTIGNORE='ls:history:exit'
+
+# SVOS Build Related
+export USE_NONRECURSIVE_MAKE=1
+export CPU=SVOS9_64
+export TEST_FORCE_RUN=1
+alias b64="build -6"
+alias b32="build -5"
+alias m="make -j 64"
+alias ma="ALLDEPS=1 make -j 64"
+alias m32="CPU=SVOS9 make -j 64"
+
+alias ls32k="tcl attrList -hardware prototype -type mpc"
+alias ls_show_reservations="tcl reserve ls -resource"
+alias ls_show_reservation="tcl reserve show"
+
+alias v="vim"
+alias g="gvim"
+[ -f /usr/local/fw-tools/Linux/bin/vim ] && alias vim=/usr/local/fw-tools/Linux/bin/vim 
+[ -f /usr/local/fw-tools/Linux/bin/gvim ] && alias gvim=/usr/local/fw-tools/Linux/bin/gvim 
+[ -f /usr/local/fw-tools/Linux/bin/vim ] && alias v=/usr/local/fw-tools/Linux/bin/vim 
+[ -f /usr/local/fw-tools/Linux/bin/gvim ] && alias g=/usr/local/fw-tools/Linux/bin/gvim 
 
 #alias tmux="TERM=screen-256color tmux -2"
 alias tmux="tmux -2"
 alias ssh="ssh -Y"
-alias l="ls -la"
-alias v="vim"
-alias g="gvim"
+alias l="ls -la --color=auto"
 #alias AT="TERM=screen-256color tmux -2 attach"
 alias AT="tmux -2 attach"
 alias DT="tmux detach"
 alias UP="source ~/.bashrc"
-alias build64="build -6"
-alias build32="build -5"
-alias make64="CPU=SVOS9_64 make -j 64"
-alias m="CPU=SVOS9_64 make -j 64"
-alias make32="CPU=SVOS9 make -j 64"
 alias cd.="cd .."
 alias cd..="cd .."
+alias ...='cd ../../../'
+alias ....='cd ../../../../'
+alias .....='cd ../../../../'
+alias .4='cd ../../../../'
+alias .5='cd ../../../../..'
 alias hs="TPC_IN_SAME_WINDOW=1 h"
 alias dp="DIFF_TOOL=kdiff3 ccase diff -pre"
 alias dps="DIFF_TOOL=diff ccase diff -pre"
@@ -95,6 +114,16 @@ alias lsproj="c lsproject -s -invob /vobs/fw-ucm"
 alias cclinks="sudo /m/test_main/labconfig/admin/labify/conf/cclinks"
 alias tpc="/m/test_main/fwtest/TLA/bin/tpc"
 alias bsdftp="ftp fbsd-ftp"
+alias cppcheck="USE_NONRECURSIVE_MAKE= make clean; USE_NONRECURSIVE_MAKE= make cppcheck"
+alias makeclean="USE_NONRECURSIVE_MAKE= make -j 128 clean"
+
+alias _sfcm="sudo /usr/local/etc/rc.d/0001.svsfcm.sh"
+alias _sfcd="sudo /usr/local/etc/rc.d/0004.svsfcd.sh"
+alias _ptsm="sudo /usr/local/etc/rc.d/0003.svptsm.sh"
+alias _ptsd="sudo /usr/local/etc/rc.d/0004.svptsd.sh"
+alias _scdpd="sudo /usr/local/etc/rc.d/svscdpd.sh"
+alias _sl="sudo /usr/local/etc/rc.d/0002.serviceLauncher.sh"
+alias start_sfcd="_sl start; _scdpd start; _sfcm start; _sfcd start;"
 
 export DIFF_TOOL=kdiff3
 export CPU=SVOS9_64
@@ -112,16 +141,12 @@ if [ `uname` = "SVOS" ] ; then
     alias ls="ls -G"
 	export LSCOLORS="ExCxcxdxBxegedabagacad"
 	export VISUAL="vim"
-    alias svup='sudo /usr/local/sandvine/svupdate/svupdate -b3 -U ftp://ftp:ftp@lab-ftp:/released'
+    alias svup='sudo /usr/local/bin/svupdate -b3 -U ftp://ftp:ftp@lab-ftp:/released'
 elif [ `uname` = "FreeBSD" ] ; then
     alias ls="ls -G"
     export LSCOLORS="ExCxcxdxBxegedabagacad"
 elif [ `uname` = "Linux" ] ; then
-
-	[ -f /usr/local/fw-tools/Linux/bin/vim ] && alias vim=/usr/local/fw-tools/Linux/bin/vim 
-	[ -f /usr/local/fw-tools/Linux/bin/gvim ] && alias gvim=/usr/local/fw-tools/Linux/bin/gvim 
-
-    alias ls="ls --color"
+    alias ls="ls --color=auto"
 	export LS_COLORS="no=00:fi=00:di=00;94:ln=00;92:pi=40;33:so=00;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:ex=00;91:ow=00;94:"
 elif [ `uname` = "CYGWIN_NT-6.1-WOW64" ] ; then
     export DISPLAY=localhost:0.0
