@@ -53,6 +53,7 @@ set path+=$PWD/**
 :ca Q q
 :ca X x
 :ca W w
+:ca Edit edit
 
 :map <C-c> :close<CR>
 :map <C-f> :NERDTree<CR>
@@ -91,7 +92,9 @@ autocmd BufRead,BufNewFile *.svpp set filetype=sh
 autocmd BufRead,BufNewFile *.subr set filetype=sh
 au BufRead * if getline(1) == "#!/bin/bash" | set filetype=sh | endif
 au BufRead * if getline(1) == "#!/bin/sh" | set filetype=sh | endif
-autocmd BufRead,BufNewFile *.txt,*.email set spell | syn off
+"autocmd BufRead,BufNewFile *.txt,*.email set spell | syn off | endif
+autocmd BufRead,BufNewFile aparco.ccase.tmp.* set spell | syn off | endif
+autocmd BufRead,BufNewFile checkinMail.* set spell | syn off | endif
 
 :autocmd BufRead,BufNewFile */checklist/checklist_*.temp* %s/!!! FILL IN !!!/N\/A/g
 

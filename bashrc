@@ -73,11 +73,11 @@ export CPU=SVOS9_64
 export TEST_FORCE_RUN=1
 alias b64="build -6"
 alias b32="build -5"
-alias m="make -j 64"
-alias ma="ALLDEPS=1 make -j 64"
-alias m32="CPU=SVOS9 make -j 64"
+alias m="make -j 128"
+alias ma="ALLDEPS=1 make -j 128"
+alias m32="CPU=SVOS9 make -j 128"
+alias ma32="ALLDEPS=1 CPU=SVOS9 make -j 128"
 
-alias ls32k="tcl attrList -hardware prototype -type mpc"
 alias ls_show_reservations="tcl reserve ls -resource"
 alias ls_show_reservation="tcl reserve show"
 
@@ -117,6 +117,8 @@ alias bsdftp="ftp fbsd-ftp"
 alias cppcheck="USE_NONRECURSIVE_MAKE= make clean; USE_NONRECURSIVE_MAKE= make cppcheck"
 alias makeclean="USE_NONRECURSIVE_MAKE= make -j 128 clean"
 
+alias kamikaze="d fw; makeclean; rm -rf obj/; ccase sync; cd -"
+
 alias _sfcm="sudo /usr/local/etc/rc.d/0001.svsfcm.sh"
 alias _sfcd="sudo /usr/local/etc/rc.d/0004.svsfcd.sh"
 alias _ptsm="sudo /usr/local/etc/rc.d/0003.svptsm.sh"
@@ -154,8 +156,19 @@ elif [ `uname` = "Darwin" ] ; then
     alias ls="ls -G"
 fi
 
+alias res32k='tcl profilemgr -platform pts32k -projects ba-32k-latest -pkgExt .pts_ba_hw_dev -profile ptse -dur 18:30'
+alias res22k='tcl profilemgr -platform pts22k -projects ba-32k-latest -pkgExt .pts_ba_hw_dev -profile ptse -dur 18:30'
+alias res24k='tcl profilemgr -platform pts24k -projects ba-32k-latest -pkgExt .pts_ba_hw_dev -profile ptse -dur 18:30'
+alias res14k='tcl profilemgr -platform pts14k -projects ba-32k-latest -pkgExt .pts_ba_hw_dev -profile ptse -dur 18:30'
+alias partytime="lsres | grep 'Reservation' | awk '{print $2}' | xargs res rm"
+
 if [ `uname` != "Linux" ] ; then
     alias tcl='/m/test_main/fwtest/bin/tcl'
+	alias ls32k='tcl attrList -attr "mb_model SV67" -type mpc'
+else
+	alias tcl='ssh test ". /home/aparco/.bashrc;/m/test_main/fwtest/bin/tcl"'
+	alias res='ssh test ". /home/aparco/.bashrc;/m/test_main/utils/svdev/all/bin/res"'
+	alias ls32k='tcl attrList -attr \"mb_model SV67\" -type mpc'
 fi
 
 PATH=${HOME}/bin:/usr/local/bin:${HOME}/scripts:$PATH
@@ -218,7 +231,18 @@ listtmux
 
 rst()
 {
-    tcl_main resource tpc-$1 powerCycle
+	local host=
+	host=$(_resolve_hostname $1)
+	if [ "$(echo $host | wc -w)" -ne 1 ]; then
+		echo "You probably didn't want to reset all these: $host"
+		return 1
+	fi
+	if [ $? -eq 0 ] ; then
+		echo "Resetting $host"
+		tcl resource $host powerCycle
+	else
+		echo $host
+	fi
 }
 
 view()
@@ -235,29 +259,6 @@ diffa()
     else
         DIFF_TOOL=kdiff3 ccase diff -act $activity
     fi
-}
-
-cdd()
-{
-    local cnt=${1:-1}
-    while [ $cnt -gt 0 ]
-    do
-        cd ..
-        cnt=$(($cnt - 1))
-    done
-}
-
-resetme()
-{
-    if [ `uname` != "SVOS" ] ; then
-        echo "Not on a TPC"
-        return 1
-    fi
-
-    local tpc=${HOSTNAME%%.*}
-    echo "Resetting $tpc"
-    ssh -A -t wtllab-test-1.phaedrus.sandvine.com "/m/test_main/fwtest/bin/tcl resource $tpc powerCycle"
-	#nohup ssh -A -t wtllab-test-1.phaedrus.sandvine.com "/m/test_main/fwtest/bin/tcl resource $tpc powerCycle" &
 }
 
 execute_in_all_panes()

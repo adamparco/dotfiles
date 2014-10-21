@@ -47,3 +47,15 @@ Host test
     HostName test
     ForwardX11Trusted yes
     ForwardAgent yes
+
+Host build64
+    HostName wtllab-bsdbuild-5
+    user aparco
+    ForwardX11Trusted yes
+    ForwardAgent yes
+
+Host labcc1
+    HostName lab-cc1
+    user aparco
+    ForwardX11Trusted yes
+    ForwardAgent yes
