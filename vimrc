@@ -1,5 +1,14 @@
 
 "-----------VUNDLE-----------
+let has_vundle=1
+if !filereadable($HOME."/.vim/bundle/Vundle.vim/README.md")
+    echo "Installing Vundle..."
+    echo ""
+    silent !mkdir -p $HOME/.vim/bundle
+    silent !git clone https://github.com/gmarik/Vundle.vim $HOME/.vim/bundle/Vundle.vim
+    let has_vundle=0
+endif
+
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -13,17 +22,23 @@ Plugin 'gmarik/Vundle.vim'
 " My plugins
 Plugin 'The-NERD-tree'
 Plugin 'ctrlp.vim'
+Plugin 'bling/vim-bufferline'
+Plugin 'bling/vim-airline'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
+if has_vundle == 0
+    :silent! PluginInstall
+    :qa
+endif
 "-----------VUNDLE-----------
 
+let g:airline_theme="powerlineish"
 
-
-python from powerline.vim import setup as powerline_setup
-python powerline_setup()
-python del powerline_setup
+"python from powerline.vim import setup as powerline_setup
+"python powerline_setup()
+"python del powerline_setup
 set laststatus=2 " Always display the statusline in all windows
 set showtabline=2 " Always display the tabline, even if there is only one tab
 set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
@@ -67,7 +82,7 @@ set background=dark
 colorscheme jellybeans
 
 if has('gui_running')
-  set guioptions-=T  " no toolbar
+  "set guioptions-=T  " no toolbar
   set lines=65 columns=95
   "set guifont=Menlo\ 10\ Pitch\ 10
   set guifont=Menlo
@@ -350,3 +365,16 @@ function! <SID>BufcloseCloseIt()
      execute("bdelete! ".l:currentBufNum)
    endif
 endfunction
+
+
+" Buffers
+nnoremap <Leader>1 :1b<CR>
+nnoremap <Leader>2 :2b<CR>
+nnoremap <Leader>3 :3b<CR>
+nnoremap <Leader>4 :4b<CR>
+nnoremap <Leader>5 :5b<CR>
+nnoremap <Leader>6 :6b<CR>
+nnoremap <Leader>7 :7b<CR>
+nnoremap <Leader>8 :8b<CR>
+nnoremap <Leader>9 :9b<CR>
+nnoremap <Leader>0 :10b<CR>
