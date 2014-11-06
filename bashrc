@@ -2,7 +2,10 @@
 PATH=${HOME}/bin:/usr/local/bin:${HOME}/scripts:$PATH
 
 # If not running interactively, don't do anything
-#[[ $- != *i* ]] && return
+[[ $- != *i* ]] && return
+
+LANG=en_US.utf8
+LC_ALL=en_US.UTF-8
 
 if [ -f `brew --prefix`/etc/bash_completion ]; then
     . `brew --prefix`/etc/bash_completion
@@ -39,7 +42,7 @@ shopt -s histappend
 shopt -s cmdhist
 shopt -s histverify ## edit a recalled history line before executing
 #shopt -s histreedit ## reedit a history substitution line if it failed
-HISTIGNORE='ls:history:exit'
+HISTIGNORE='ls:history:exit:jobs:fg:bg'
 
 #alias tmux="TERM=screen-256color tmux -2"
 alias tmux="tmux -2"
@@ -60,8 +63,6 @@ alias grep="grep --color=auto"
 export EDITOR="vim"
 export VISUAL="gvim"
 
-LANG=en_US.utf8
-LC_ALL=en_US.UTF-8
 
 # colors
 if [ `uname` = "FreeBSD" ] ; then
