@@ -1,12 +1,31 @@
-let Cscope_OpenQuickfixWindow = 1
-let Cscope_AutoClose = 1
-let Cscope_TagOrder = 0
 
-set tags=/dev/null
+"-----------VUNDLE-----------
+set nocompatible              " be iMproved, required
+filetype off                  " required
 
-"added for omnicomplete
-"set nocp
-"filetype plugin on
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+
+" My plugins
+Plugin 'The-NERD-tree'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+"-----------VUNDLE-----------
+
+
+
+python from powerline.vim import setup as powerline_setup
+python powerline_setup()
+python del powerline_setup
+set laststatus=2 " Always display the statusline in all windows
+set showtabline=2 " Always display the tabline, even if there is only one tab
+set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
 
 " attempt to use global copy buffer as default
 set clipboard=unnamed
@@ -23,32 +42,8 @@ endif
 "don't clear the screen
 "set t_ti= t_te=
 
-let g:view = "none"
-function! AddPath()
-    let s:view_idx = stridx($PWD, "/view/")
-    if s:view_idx == 0
-        let s:slash_idx = stridx($PWD, "/", 6)
-        if s:slash_idx > 0
-            let g:view = strpart($PWD, 6, s:slash_idx - 6)
-        endif
-    endif
-    return g:view
-endfunction
-
-call AddPath()
-execute "set path+=/view/".g:view."/vobs/fw-bsd/src/include/**"
-execute "set path+=/view/".g:view."/vobs/fw-bsd/src/sys/**"
-execute "set path+=/view/".g:view."/vobs/fw-bsd/src/sys/amd64/include/**"
-execute "set path+=/view/".g:view."/vobs/fw/include/**"
-
-execute "set path+=/view/".g:view."/vobs/fw/drvr/ident/**"
-execute "set path+=/view/".g:view."/vobs/fw/support/hal/**"
-execute "set path+=/view/".g:view."/vobs/fw/support/ident/**"
-
-
-execute "set path+=/view/".g:view."/vobs/fw-vendor/mockpp/**"
-
 set path+=$PWD/**
+set path+=~/**
 
 :ca Q q
 :ca X x
@@ -56,7 +51,7 @@ set path+=$PWD/**
 :ca Edit edit
 
 :map <C-c> :close<CR>
-:map <C-f> :NERDTree<CR>
+:map <C-f> :NERDTreeToggle<CR>
 "Fix VIM corruption in TMUX when using NERDTree
 let g:NERDTreeDirArrows = 0
 
@@ -73,10 +68,11 @@ colorscheme jellybeans
 if has('gui_running')
   set guioptions-=T  " no toolbar
   set lines=65 columns=95
-  set guifont=Courier\ 10\ Pitch\ 10
+  "set guifont=Menlo\ 10\ Pitch\ 10
+  set guifont=Menlo
   set guioptions+=e
   set guitablabel=%M\ %t
-  winpos 100 40
+  "winpos 100 40
   source $VIMRUNTIME/mswin.vim
   behave mswin
 else
@@ -87,16 +83,9 @@ endif
 "return to last line
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
-autocmd BufRead,BufNewFile sv.* set filetype=sh
-autocmd BufRead,BufNewFile *.svpp set filetype=sh
-autocmd BufRead,BufNewFile *.subr set filetype=sh
 au BufRead * if getline(1) == "#!/bin/bash" | set filetype=sh | endif
 au BufRead * if getline(1) == "#!/bin/sh" | set filetype=sh | endif
 "autocmd BufRead,BufNewFile *.txt,*.email set spell | syn off | endif
-autocmd BufRead,BufNewFile aparco.ccase.tmp.* set spell | syn off | endif
-autocmd BufRead,BufNewFile checkinMail.* set spell | syn off | endif
-
-:autocmd BufRead,BufNewFile */checklist/checklist_*.temp* %s/!!! FILL IN !!!/N\/A/g
 
 augroup reload_vimrc " {
     autocmd!
@@ -143,9 +132,8 @@ filetype indent on
 " Set to auto read when a file is changed from the outside
 set autoread
 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Turn on the WiLd menu
@@ -232,8 +220,6 @@ set smarttab
 set shiftwidth=4
 set tabstop=4
 
-autocmd BufRead,BufNewFile */vobs/fw-bsd/* set tabstop=8|set shiftwidth=8|set noexpandtab
-
 " Linebreak on 500 characters
 set lbr
 set tw=500
@@ -267,17 +253,6 @@ autocmd BufReadPost *
 " Remember info about open buffers on close
 set viminfo^=%
 
-
-""""""""""""""""""""""""""""""
-" => Status line
-""""""""""""""""""""""""""""""
-" Always show the status line
-set laststatus=1
-
-" Format the status line
-"set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
-set statusline+=%F
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Editing mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -305,22 +280,11 @@ if has("mac") || has("macunix")
   vmap <D-k> <M-k>
 endif
 
-" Delete trailing white space on save, useful for Python and CoffeeScript ;)
-func! DeleteTrailingWS()
-  exe "normal mz"
-  %s/\s\+$//ge
-  exe "normal `z"
-endfunc
-autocmd BufWrite *.py :call DeleteTrailingWS()
-autocmd BufWrite *.coffee :call DeleteTrailingWS()
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Spell checking
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Pressing ,ss will toggle and untoggle spell checking
 map <leader>ss :setlocal spell!<cr>
-
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
@@ -363,15 +327,6 @@ function! VisualSelection(direction) range
 
     let @/ = l:pattern
     let @" = l:saved_reg
-endfunction
-
-
-" Returns true if paste mode is enabled
-function! HasPaste()
-    if &paste
-        return 'PASTE MODE  '
-    en
-    return ''
 endfunction
 
 " Don't close window, when deleting a buffer
