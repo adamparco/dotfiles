@@ -11,6 +11,11 @@ if [ -f `brew --prefix`/etc/bash_completion ]; then
     . `brew --prefix`/etc/bash_completion
 fi
 
+hg_ps1()
+{
+    hg prompt "{ on {branch}}{ at {bookmark}}{status}" 2> /dev/null
+}
+
 CRST="\[\e[m\]"
 CGREY="\[\e[38;5;240m\]"
 CGREEN="\[\e[38;5;107m\]"

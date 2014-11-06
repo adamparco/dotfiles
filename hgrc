@@ -1,0 +1,6 @@
+[ui]
+usename = Adam Parco <adam@touchstone.com>
+editor = vim
+
+[extensions]
+prompt = /Users/adamparco/tools/hg-prompt/prompt.py
