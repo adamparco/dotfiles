@@ -12,8 +12,8 @@ endif
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-" set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
+" set the runtime path to include Vundle and initialize
 call vundle#begin()
 
 " let Vundle manage Vundle, required
@@ -24,6 +24,7 @@ Plugin 'The-NERD-tree'
 Plugin 'ctrlp.vim'
 Plugin 'bling/vim-bufferline'
 Plugin 'bling/vim-airline'
+Plugin 'autoload_cscope.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -34,16 +35,22 @@ if has_vundle == 0
 endif
 "-----------VUNDLE-----------
 
+let g:ctrlp_use_caching = 1
+let g:bufferline_echo = 0
+let g:airline_inactive_collapse=1
+let g:airline_detect_paste=1
+let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme="powerlineish"
+"let g:airline#extensions#bufferline#enabled = 1
+"let g:airline#extensions#tabline#buffer_idx_mode = 1
 
-"python from powerline.vim import setup as powerline_setup
-"python powerline_setup()
-"python del powerline_setup
+set cscopetag
+
 set laststatus=2 " Always display the statusline in all windows
 set showtabline=2 " Always display the tabline, even if there is only one tab
 set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
 
-" attempt to use global copy buffer as default
+" use global copy buffer as default
 set clipboard=unnamed
 
 "set list
@@ -54,6 +61,11 @@ set number
 if version >= 730
 	set autochdir
 endif
+
+set noerrorbells 
+set novisualbell
+set t_vb=
+autocmd! GUIEnter * set vb t_vb=
 
 "don't clear the screen
 "set t_ti= t_te=
@@ -82,7 +94,8 @@ set background=dark
 colorscheme jellybeans
 
 if has('gui_running')
-  "set guioptions-=T  " no toolbar
+  set guioptions=
+  set transparency=15
   set lines=65 columns=95
   "set guifont=Menlo\ 10\ Pitch\ 10
   set guifont=Menlo
@@ -184,7 +197,7 @@ set hlsearch
 set incsearch
 
 " Don't redraw while executing macros (good performance config)
-set lazyredraw
+"set lazyredraw
 
 " For regular expressions turn magic on
 set magic
@@ -198,7 +211,7 @@ set mat=2
 set noerrorbells
 set novisualbell
 set t_vb=
-set tm=200 "set timeout small for esc hjkl problem
+"set tm=200 "set timeout small for esc hjkl problem
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -283,11 +296,14 @@ nmap <M-k> mz:m-2<cr>`z
 vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
 vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
 
+nmap ∆ <M-j>
+nmap ˚ <M-k>
+
 " For Mac in iTerm2
-nmap <ESC>j mz:m+<cr>`z
-nmap <ESC>k mz:m-2<cr>`z
-vmap <ESC>j :m'>+<cr>`<my`>mzgv`yo`z
-vmap <ESC>k :m'<-2<cr>`>my`<mzgv`yo`z
+"nmap <ESC>j mz:m+<cr>`z
+"nmap <ESC>k mz:m-2<cr>`z
+"vmap <ESC>j :m'>+<cr>`<my`>mzgv`yo`z
+"vmap <ESC>k :m'<-2<cr>`>my`<mzgv`yo`z
 
 if has("mac") || has("macunix")
   nmap <D-j> <M-j>
@@ -368,13 +384,30 @@ endfunction
 
 
 " Buffers
-nnoremap <Leader>1 :1b<CR>
-nnoremap <Leader>2 :2b<CR>
-nnoremap <Leader>3 :3b<CR>
-nnoremap <Leader>4 :4b<CR>
-nnoremap <Leader>5 :5b<CR>
-nnoremap <Leader>6 :6b<CR>
-nnoremap <Leader>7 :7b<CR>
-nnoremap <Leader>8 :8b<CR>
-nnoremap <Leader>9 :9b<CR>
-nnoremap <Leader>0 :10b<CR>
+:map <C-b> :bdelete<CR>
+" Mac Alt-L
+nmap ¬ :bnext<CR>
+" Mac Alt-H
+nmap ˙ :bprev<CR>
+
+nnoremap ¡ :b 1<CR>
+nnoremap ™ :b 2<CR>
+nnoremap £ :b 3<CR>
+nnoremap ¢ :b 4<CR>
+nnoremap ∞ :b 5<CR>
+nnoremap § :b 6<CR>
+nnoremap ¶ :b 7<CR>
+nnoremap • :b 8<CR>
+nnoremap ª :b 9<CR>
+nnoremap º :b 10<CR>
+
+nnoremap <Leader>1 :b 1<CR>
+nnoremap <Leader>2 :b 2<CR>
+nnoremap <Leader>3 :b 3<CR>
+nnoremap <Leader>4 :b 4<CR>
+nnoremap <Leader>5 :b 5<CR>
+nnoremap <Leader>6 :b 6<CR>
+nnoremap <Leader>7 :b 7<CR>
+nnoremap <Leader>8 :b 8<CR>
+nnoremap <Leader>9 :b 9<CR>
+nnoremap <Leader>0 :b 10<CR>
