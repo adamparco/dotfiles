@@ -35,6 +35,7 @@ if has_vundle == 0
 endif
 "-----------VUNDLE-----------
 
+let g:ctrlp_cmd = 'CtrlPMixed'
 let g:ctrlp_use_caching = 1
 let g:bufferline_echo = 0
 let g:airline_inactive_collapse=1
@@ -296,14 +297,11 @@ nmap <M-k> mz:m-2<cr>`z
 vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
 vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
 
+" Mac Alt j/k move text around
 nmap ∆ <M-j>
 nmap ˚ <M-k>
-
-" For Mac in iTerm2
-"nmap <ESC>j mz:m+<cr>`z
-"nmap <ESC>k mz:m-2<cr>`z
-"vmap <ESC>j :m'>+<cr>`<my`>mzgv`yo`z
-"vmap <ESC>k :m'<-2<cr>`>my`<mzgv`yo`z
+vmap ∆ <M-j>
+vmap ˚ <M-k>
 
 if has("mac") || has("macunix")
   nmap <D-j> <M-j>
