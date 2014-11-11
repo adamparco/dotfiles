@@ -25,6 +25,7 @@ Plugin 'ctrlp.vim'
 Plugin 'bling/vim-bufferline'
 Plugin 'bling/vim-airline'
 Plugin 'autoload_cscope.vim'
+Plugin 'Valloric/YouCompleteMe'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -44,6 +45,10 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme="powerlineish"
 "let g:airline#extensions#bufferline#enabled = 1
 "let g:airline#extensions#tabline#buffer_idx_mode = 1
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_confirm_extra_conf = 0
+set completeopt-=preview
 
 set cscopetag
 
@@ -381,7 +386,7 @@ function! <SID>BufcloseCloseIt()
 endfunction
 
 
-" Buffers
+" Gui buffers
 :map <C-b> :bdelete<CR>
 " Mac Alt-L
 nmap ¬ :bnext<CR>
@@ -399,6 +404,9 @@ nnoremap • :b 8<CR>
 nnoremap ª :b 9<CR>
 nnoremap º :b 10<CR>
 
+" Terminal buffers
+nmap <Leader>l :bnext<CR>
+nmap <Leader>h :bprev<CR>
 nnoremap <Leader>1 :b 1<CR>
 nnoremap <Leader>2 :b 2<CR>
 nnoremap <Leader>3 :b 3<CR>
