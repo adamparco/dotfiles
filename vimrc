@@ -48,6 +48,9 @@ let g:airline_theme="powerlineish"
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_confirm_extra_conf = 0
+let g:ycm_enable_diagnostic_signs = 0
+"enable Exuberant tags
+let g:ycm_collect_identifiers_from_tags_files = 1
 set completeopt-=preview
 
 set cscopetag
