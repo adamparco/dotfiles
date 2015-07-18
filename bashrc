@@ -4,9 +4,6 @@ PATH=${HOME}/bin:/usr/local/bin:${HOME}/scripts:$PATH
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-LANG=en_US.utf8
-LC_ALL=en_US.UTF-8
-
 if [ -f `brew --prefix`/etc/bash_completion ]; then
     . `brew --prefix`/etc/bash_completion
 fi
