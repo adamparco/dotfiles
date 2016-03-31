@@ -49,7 +49,8 @@ HISTIGNORE='ls:history:exit:jobs:fg:bg'
 #alias tmux="TERM=screen-256color tmux -2"
 alias tmux="tmux -2"
 alias ssh="ssh -Y"
-alias l="ls -la --color=auto"
+alias l="ls -la"
+alias ll=l
 alias AT="tmux -2 attach"
 alias DT="tmux detach"
 alias UP="source ~/.bashrc"
@@ -62,8 +63,10 @@ alias .4='cd ../../../../'
 alias .5='cd ../../../../..'
 alias grep="grep --color=auto"
 
-export EDITOR="vim"
-export VISUAL="gvim"
+export EDITOR='subl -w'
+#export EDITOR="vim"
+#export VISUAL="gvim"
+export VISUAL='subl -w'
 
 
 # colors
