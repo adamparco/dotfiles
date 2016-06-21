@@ -1,0 +1,27 @@
+alias tmux="tmux -2"
+alias ssh="ssh -Y"
+alias l="ls -la"
+alias ll="ls -l"
+alias AT="tmux -2 attach"
+alias DT="tmux detach"
+alias UP="source ~/.bashrc"
+alias cd.="cd .."
+alias cd..="cd .."
+alias ...='cd ../../../'
+alias ....='cd ../../../../'
+alias .....='cd ../../../../'
+alias .4='cd ../../../../'
+alias .5='cd ../../../../..'
+alias grep="grep --color=auto"
+
+alias cdr="cd ~/repos"
+alias cds="cd ~/repos/sherlock/src"
+alias cdl="cd ~/repos/logdisp"
+alias cdm="cd ~/repos/moriarty/src"
+alias cdc="cd ~/repos/card/card"
+
+alias flash_bl="cd ~/repos/moriarty/src; git pull; make; st-flash write bin-a06/a06_bare_moriarty.bin 0x8000000; cd -"
+alias flash_sherlock="~/repos/moriarty/src/tools/morclient/morclient.py -b ~/repos/sherlock/src/bin-sherlock/sherlock-pong.bin -vr"
+
+alias ocd_s='openocd -f ~/openocd.cfg -c "hla_serial 066BFF494951785087033248; gdb_port 3331; telnet_port 4441; tcl_port 6661"'
+alias ocd_c='openocd -f interface/stlink-v2-1.cfg -f target/efm32.cfg -c "hla_serial 066EFF495056805087151742; gdb_port 3332; telnet_port 4442; tcl_port 6662"'

@@ -1,11 +1,10 @@
 # .bashrc
-PATH=${HOME}/bin:/usr/local/bin:${HOME}/scripts:$PATH
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-LANG=en_US.utf8
-LC_ALL=en_US.UTF-8
+#LANG=en_US.utf8
+#LC_ALL=en_US.UTF-8
 
 if [ -f `brew --prefix`/etc/bash_completion ]; then
     . `brew --prefix`/etc/bash_completion
@@ -13,7 +12,7 @@ fi
 
 hg_ps1()
 {
-    hg prompt "{ on {branch}}{ at {bookmark}}{status}" 2> /dev/null
+    hg prompt "({on {branch}}{ at {bookmark}}{status})" 2> /dev/null
 }
 
 CRST="\[\e[m\]"
@@ -22,7 +21,7 @@ CGREEN="\[\e[38;5;107m\]"
 CBLUE="\[\e[38;5;110m\]"
 CRED="\[\e[38;5;52m\]"
 
-PS1="$CRST$CGREY\u$CRST@$CGREEN\h$CBLUE[\W]$CRED\$(__git_ps1 \(%s\))$CRST\\$ "
+PS1="$CRST$CGREY\u$CRST@$CGREEN\h$CBLUE[\w]$CRED\$(hg_ps1)\$(__git_ps1 \(%s\))$CRST\\$ "
 PS2="$CRST$CGREY>$CRST "
 
 PROMPT_COMMAND='history -a'
@@ -52,7 +51,8 @@ HISTIGNORE='ls:history:exit:jobs:fg:bg'
 #alias tmux="TERM=screen-256color tmux -2"
 alias tmux="tmux -2"
 alias ssh="ssh -Y"
-alias l="ls -la --color=auto"
+alias l="ls -la"
+alias ll="ls -l"
 alias AT="tmux -2 attach"
 alias DT="tmux detach"
 alias UP="source ~/.bashrc"
@@ -65,9 +65,22 @@ alias .4='cd ../../../../'
 alias .5='cd ../../../../..'
 alias grep="grep --color=auto"
 
-export EDITOR="vim"
-export VISUAL="gvim"
+export MAKEFLAGS='-j8'
 
+alias cdr="cd ~/repos"
+alias cds="cd ~/repos/sherlock/src"
+alias cdl="cd ~/repos/logdisp"
+alias cdm="cd ~/repos/moriarty/src"
+alias cdc="cd ~/repos/card/card"
+
+alias flash_bl="cd ~/repos/moriarty/src; git pull; make; st-flash write bin-a06/a06_bare_moriarty.bin 0x8000000; cd -"
+alias flash_sherlock="~/repos/moriarty/src/tools/morclient/morclient.py -b ~/repos/sherlock/src/bin-sherlock/sherlock-pong.bin -vr"
+
+alias ocd_s='openocd -f ~/openocd.cfg -c "hla_serial 066BFF494951785087033248; gdb_port 3331; telnet_port 4441; tcl_port 6661"'
+alias ocd_c='openocd -f interface/stlink-v2-1.cfg -f target/efm32.cfg -c "hla_serial 066EFF495056805087151742; gdb_port 3332; telnet_port 4442; tcl_port 6662"'
+
+export EDITOR="subl -w"
+export VISUAL="subl -w"
 
 # colors
 if [ `uname` = "FreeBSD" ] ; then
@@ -99,20 +112,20 @@ execute_in_all_panes()
   # Notate which window/pane we were originally at
   ORIG_WINDOW_INDEX=`tmux display-message -p '#I'`
   ORIG_PANE_INDEX=`tmux display-message -p '#P'`
- 
+
   # Assign the argument to something readable
   command=$1
- 
+
   # Count how many windows we have
   windows=$((`tmux list-windows | wc -l`))
- 
+
   # Loop through the windows
   for (( window=0; window <= $windows; window++ )); do
     tmux select-window -t $window #select the window
- 
+
     # Count how many panes there are in the window
     panes=$((`tmux list-panes| wc -l`))
- 
+
     # Loop through the panes that are in the window
     for (( pane=0; pane < $panes; pane++ )); do
       # Skip the window that the command was ran in, run it in that window last
@@ -125,7 +138,7 @@ execute_in_all_panes()
       tmux send-keys "$command" C-m
     done
   done
- 
+
   tmux select-window -t $ORIG_WINDOW_INDEX #select the original window
   tmux select-pane -t $ORIG_PANE_INDEX #select the original pane
   #tmux send-keys "$command" C-m
