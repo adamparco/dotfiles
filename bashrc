@@ -66,6 +66,8 @@ alias .5='cd ../../../../..'
 alias grep="grep --color=auto"
 
 export MAKEFLAGS='-j8'
+#export EDITOR="vim"
+#export VISUAL="gvim"
 
 alias cdr="cd ~/repos"
 alias cds="cd ~/repos/sherlock/src"
